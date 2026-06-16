@@ -1,0 +1,14 @@
+{
+  "name": "Lumicite",
+  "short_name": "Lumicite",
+  "description": "How AI sees your firm — AI-visibility measurement for professional firms.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0E1116",
+  "theme_color": "#0E1116",
+  "icons": [
+    { "src": "assets/favicon/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/favicon/favicon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/favicon/favicon.svg", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

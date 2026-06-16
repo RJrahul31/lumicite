@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumicite — how AI sees your firm</title>
+<meta name="description" content="When clients ask AI who to trust, most professional firms are invisible. Lumicite measures exactly where you stand across every major AI platform — then does the work to make you the recommendation.">
+<meta name="theme-color" content="#0E1116">
+
+<!-- favicons -->
+<link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="shortcut icon" href="assets/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="assets/favicon/favicon-180.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- open graph / twitter -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lumicite — how AI sees your firm">
+<meta property="og:description" content="Lumicite measures whether AI recommends your firm across every major platform — then does the work to earn it. Measured, not promised.">
+<meta property="og:image" content="assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.lumicite.in">
+<meta property="og:site_name" content="Lumicite">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lumicite — how AI sees your firm">
+<meta name="twitter:description" content="Lumicite measures whether AI recommends your firm across every major platform — then does the work to earn it. Measured, not promised.">
+<meta name="twitter:image" content="assets/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0E1116; --ink-2:#161A20; --ink-3:#1F242C;
+    --paper:#F5F6F4; --paper-2:#FFFFFF;
+    --graphite:#5B636E; --graphite-2:#8A9098; --mist:#E3E6E2;
+    --line-dark:rgba(255,255,255,0.10);
+    --signal:#2FE0AE; --signal-deep:#0E7C5E;
+    --sans:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --maxw:1240px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:3px}
+  .dark :focus-visible,header.nav :focus-visible{outline-color:var(--signal)}
+
+  /* grain */
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.035;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 48px}
+  section{padding:96px 0;position:relative}
+  .dark{background:var(--ink);color:var(--paper)}
+  .dark .wrap{position:relative;z-index:1}
+
+  /* ── kicker ───────────────────────────────── */
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--graphite);display:flex;align-items:center;gap:14px;margin-bottom:40px}
+  .dark .kicker{color:var(--graphite-2)}
+  .kicker .rule{flex:1;height:1px;background:var(--mist)}
+  .dark .kicker .rule{background:var(--line-dark)}
+
+  /* ── type ─────────────────────────────────── */
+  h2{font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-0.02em;line-height:1.12;max-width:20ch}
+  .lead{font-size:18px;max-width:60ch;color:#2A2F36;margin-top:18px}
+  .dark .lead{color:#C7CCD2}
+  .lead + .lead{margin-top:16px}
+  .em{color:var(--signal-deep)}
+  .dark .em{color:var(--signal)}
+  .closing{font-size:clamp(20px,2.4vw,26px);font-weight:600;letter-spacing:-0.01em;margin-top:40px;max-width:24ch}
+  .closing-line{max-width:none;white-space:nowrap}
+
+  /* ── section split header (desktop structure) ── */
+  .sec-head{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:20px 64px;align-items:start;margin-bottom:52px}
+  .sec-head > h2{margin:0}
+  .sec-head .s-body .lead{margin-top:0}
+  .sec-head .s-body .lead + .lead{margin-top:16px}
+  .split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:center}
+  .split .s-body .lead,.split .s-body .caption{margin-top:0}
+  .split .s-body .lead + .caption{margin-top:18px}
+  /* §2 demo: headline on its own line, paragraphs left + scorecard right */
+  .demo-title,.seo-title{max-width:none;white-space:nowrap;margin:0 0 48px}
+  .demo-split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+  .demo-card .scorecard{margin-top:0}
+  .para-div{height:1px;background:var(--mist);border:0;margin:26px 0}
+  .dark .para-div{background:var(--line-dark)}
+  /* §3 seo: bracket card left (centred), text right with dividers */
+  .seo-split{grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:64px;align-items:center}
+  .seo-split .s-body h2{margin:0 0 22px}
+  .seo-split .s-body h3{font-size:22px;font-weight:600;letter-spacing:-0.01em;margin:0}
+  .seo-split .device-demo{width:100%}
+  /* §1 the shift: centred intro, title on one line */
+  .shift-intro{margin:0 auto 52px;text-align:center}
+  .shift-intro .shift-title{max-width:none;white-space:nowrap;margin:0 auto}
+  .shift-intro .lead{max-width:62ch;margin:18px auto 0}
+  /* §1 + §3 + §7 grid-pattern background — adapted from grid-pattern.tsx, brand-tuned */
+  #shift,#seo,#honest{overflow:hidden}
+  #shift > .wrap,#seo > .wrap,#honest > .wrap{position:relative;z-index:1}
+  .grid-pattern{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;
+    stroke:rgba(14,17,22,0.11);fill:rgba(14,17,22,0.06);
+    -webkit-mask-image:radial-gradient(ellipse 74% 62% at 50% 32%,#000 0%,rgba(0,0,0,0.55) 54%,transparent 82%);
+    mask-image:radial-gradient(ellipse 74% 62% at 50% 32%,#000 0%,rgba(0,0,0,0.55) 54%,transparent 82%);}
+
+  /* ── mark / lockup ───────────────────────── */
+  .dot{fill:var(--signal)}
+  .lk{display:flex;align-items:center;gap:13px}
+  .lk .mark{flex:none}
+  .lk .wm{font-weight:500;letter-spacing:-0.035em;font-size:24px}
+
+  /* ── buttons ─────────────────────────────── */
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:14px 24px;border-radius:8px;border:1px solid transparent;cursor:pointer;transition:transform .25s ease, box-shadow .25s ease, background .25s ease;font-family:var(--sans)}
+  .btn .ar{font-family:var(--mono);font-weight:400}
+  .btn-primary{background:var(--signal);color:var(--ink);box-shadow:0 0 0 0 rgba(47,224,174,0)}
+  .btn-primary:hover{box-shadow:0 10px 34px -8px rgba(47,224,174,.5);transform:translateY(-1px)}
+  .btn-secondary{color:inherit;border-color:var(--line-dark);background:transparent}
+  .dark .btn-secondary{border-color:var(--line-dark);color:var(--paper)}
+  .btn-secondary:hover{border-color:var(--graphite-2)}
+  .btn-ghost{padding:0;border:none;background:none;color:inherit;font-weight:500;font-size:15px}
+  .btn-ghost .u{border-bottom:1px solid currentColor;padding-bottom:2px;transition:border-color .2s}
+  .btn-ghost:hover .u{border-color:var(--signal-deep)}
+  .dark .btn-ghost:hover .u{border-color:var(--signal)}
+  .cta-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:40px}
+
+  /* ── nav ─────────────────────────────────── */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(14,17,22,0);backdrop-filter:blur(0);transition:background .3s ease, border-color .3s ease;border-bottom:1px solid transparent}
+  header.nav.scrolled{background:rgba(14,17,22,0.82);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line-dark)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;color:var(--paper)}
+  .nav-inner .lk .wm{font-size:21px}
+  .nav-inner .lk .mark{width:24px;height:24px}
+  .nav-menu{display:flex;align-items:center;gap:30px}
+  .nav-links{display:flex;align-items:center;gap:30px;font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;color:var(--graphite-2)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--paper)}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:13.5px;color:var(--ink);background:var(--signal);padding:9px 16px;border-radius:7px;transition:box-shadow .25s ease, transform .25s ease}
+  .nav-cta:hover{box-shadow:0 8px 24px -8px rgba(47,224,174,.55);transform:translateY(-1px)}
+  .nav-cta .ar{font-family:var(--mono);font-weight:400}
+  .nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .nav-burger span{width:22px;height:2px;background:var(--paper);border-radius:2px;transition:.3s}
+
+  /* ── hero ────────────────────────────────── */
+  .hero{padding-top:168px;padding-bottom:96px;overflow:hidden}
+  .hero .glow{position:absolute;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(47,224,174,0.17),transparent 60%);top:-220px;right:-180px;filter:blur(24px);z-index:0;animation:pulse 8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.85}50%{opacity:1}}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:72px;align-items:center}
+  .hero-kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--graphite-2);margin-bottom:26px}
+  .hero-kicker b{color:var(--signal);font-weight:500}
+  h1.hero-title{font-size:clamp(46px,8vw,86px);font-weight:600;letter-spacing:-0.035em;line-height:0.98;color:var(--paper)}
+  .hero-sub{font-size:clamp(17px,1.5vw,19px);color:#C7CCD2;max-width:50ch;margin-top:26px;line-height:1.55}
+  .hero-stat{margin-top:40px;font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;color:var(--graphite-2);display:flex;gap:14px;align-items:baseline;border-top:1px solid var(--line-dark);padding-top:22px;max-width:60ch}
+  .hero-stat .big{color:var(--signal);font-size:15px;font-weight:500}
+  .hero-stat .src{color:var(--graphite-2)}
+
+  /* hero visual — tilted "live scan" dashboard card */
+  .hero-visual{position:relative}
+  .dash-card{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:18px;padding:30px;position:relative;z-index:1;
+    transform-origin:left center;box-shadow:0 50px 100px -50px rgba(0,0,0,.95);transform:rotate(4deg) scale(1.06);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .hero-visual:hover .dash-card{transform:rotate(0) scale(1.06)}
+  .dc-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line-dark);padding-bottom:16px;margin-bottom:18px}
+  .dc-live{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--signal);display:flex;align-items:center;gap:9px}
+  .dc-sub{font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;color:var(--graphite-2);margin-top:7px;text-transform:uppercase}
+  .live-dot{width:8px;height:8px;border-radius:50%;background:var(--signal);box-shadow:0 0 10px 2px rgba(47,224,174,.6);animation:livepulse 2.4s ease-in-out infinite}
+  @keyframes livepulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+  .dc-prompt{font-family:var(--mono);font-size:13px;color:#C7CCD2;background:var(--ink-3);border:1px solid var(--line-dark);border-radius:9px;padding:12px 14px;line-height:1.5}
+  .dc-prompt .q{color:var(--graphite-2)}
+  .dc-label{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--graphite-2);margin:18px 0 6px}
+  .arow{display:grid;grid-template-columns:14px 1fr auto;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line-dark)}
+  .arow:last-child{border-bottom:none}
+  .arow .state{width:11px;height:11px;border-radius:50%}
+  .arow .state.on{background:var(--signal);box-shadow:0 0 12px 2px rgba(47,224,174,.55)}
+  .arow .state.off{background:transparent;border:1.5px solid var(--graphite)}
+  .arow .name{font-size:14.5px;color:#C7CCD2}
+  .arow.lit .name{color:var(--paper);font-weight:600}
+  .arow .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--graphite-2)}
+  .arow.lit .tag{color:var(--signal)}
+  .dc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;border-top:1px solid var(--line-dark);padding-top:16px}
+  .dc-metric .ml{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--graphite-2)}
+  .dc-metric .mv{font-family:var(--mono);font-size:14px;color:var(--paper);margin-top:5px}
+  .dc-metric .mv.sig{color:var(--signal)}
+  .dc-metric.right{text-align:right}
+  /* one restrained, on-brand floating accent — the mark's lit-line motif */
+  .accent-chip{position:absolute;top:-20px;left:-20px;z-index:2;background:var(--ink-3);border:1px solid var(--line-dark);border-radius:12px;padding:13px;display:flex;flex-direction:column;gap:6px;box-shadow:0 24px 50px -30px rgba(0,0,0,.9);transform:rotate(-6deg)}
+  .accent-chip span{display:block;height:5px;border-radius:3px;background:var(--graphite);opacity:.5}
+  .accent-chip span:nth-child(1){width:22px}
+  .accent-chip span:nth-child(2){width:31px;background:var(--signal);opacity:1;box-shadow:0 0 10px 1px rgba(47,224,174,.55)}
+  .accent-chip span:nth-child(3){width:16px}
+
+  /* trust strip — the platforms Lumicite measures across (official logos) */
+  .trust{margin-top:64px;padding-top:30px;border-top:1px solid var(--line-dark);display:flex;align-items:center;gap:16px 36px;flex-wrap:wrap}
+  .trust-label{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--graphite-2)}
+  .trust-logos{list-style:none;display:flex;align-items:center;gap:14px 26px;flex-wrap:wrap}
+  .trust-logos li{display:flex;align-items:center;gap:9px;opacity:.92;transition:opacity .25s}
+  .trust-logos li:hover{opacity:1}
+  .trust-logos svg{width:20px;height:20px;flex:none;display:block}
+  .trust-logos .lname{font-size:14px;font-weight:500;color:#C7CCD2;letter-spacing:-0.01em}
+
+  /* ── stat cards ──────────────────────────── */
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  .stat-card{background:var(--paper-2);border:1px solid var(--mist);border-radius:14px;padding:30px;display:flex;flex-direction:column;gap:14px}
+  .stat-card .fig{font-size:clamp(34px,4vw,46px);font-weight:600;letter-spacing:-0.02em;line-height:1;color:var(--ink)}
+  .stat-card .fig .em{color:var(--signal-deep)}
+  .stat-card .txt{font-size:15px;color:#3A4048;line-height:1.5}
+  .stat-card .src{font-family:var(--mono);font-size:11.5px;letter-spacing:0.04em;color:var(--graphite);margin-top:auto;padding-top:8px}
+
+  /* ── scorecard ───────────────────────────── */
+  .scorecard{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:16px;padding:36px;margin-top:8px;max-width:680px}
+  .score-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line-dark);padding-bottom:24px;margin-bottom:8px}
+  .score-head .who{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2)}
+  .score-head .num{font-size:64px;font-weight:600;letter-spacing:-0.03em;line-height:1;margin-top:14px}
+  .score-head .num small{font-size:22px;color:var(--graphite-2);font-weight:400}
+  .score-head .delta{font-family:var(--mono);font-size:13px;color:var(--signal);margin-top:10px}
+  .qrow{display:grid;grid-template-columns:24px 1fr auto;gap:16px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line-dark)}
+  .qrow:last-child{border-bottom:none}
+  .qrow .state{width:11px;height:11px;border-radius:50%}
+  .qrow .state.on{background:var(--signal);box-shadow:0 0 12px 2px rgba(47,224,174,.55)}
+  .qrow .state.off{background:transparent;border:1.5px solid var(--graphite)}
+  .qrow .q{font-family:var(--mono);font-size:13.5px;color:#C7CCD2}
+  .qrow .tag{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--graphite-2);white-space:nowrap}
+  .qrow .tag.cited{color:var(--signal)}
+  .caption{font-family:var(--mono);font-size:12px;color:var(--graphite-2);margin-top:20px;letter-spacing:0.02em;max-width:60ch}
+  .dark .caption{color:var(--graphite-2)}
+  body .caption.on-light{color:var(--graphite)}
+
+  /* ── bracket device ──────────────────────── */
+  .device{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center;margin-top:48px}
+  .device-demo{background:var(--paper-2);border:1px solid var(--mist);border-radius:14px;padding:54px 44px;display:flex;align-items:center;justify-content:center;min-height:200px}
+  .bracketed{position:relative;font-size:clamp(34px,5vw,52px);font-weight:600;letter-spacing:-0.01em;color:var(--ink);padding:0 44px;font-variant-numeric:tabular-nums}
+  .bracketed::before,.bracketed::after{font-family:var(--mono);font-weight:400;color:var(--signal-deep);font-size:1.5em;position:absolute;top:50%;transform:translateY(-52%)}
+  .bracketed::before{content:"[";left:0}.bracketed::after{content:"]";right:0}
+  .bracketed b{color:var(--signal-deep);font-weight:600}
+  .device-demo .sub{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--graphite);margin-top:18px;text-align:center}
+  .device-col h3{font-size:22px;font-weight:600;letter-spacing:-0.01em}
+
+  /* ── method panel (§4) ───────────────────── */
+  .method{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px}
+  .panel{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:16px;padding:28px}
+  .panel h4{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--graphite-2);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+  .panel h4 .rule{flex:1;height:1px;background:var(--line-dark)}
+  .qbank{display:flex;flex-direction:column;gap:0}
+  .qbank .item{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--line-dark);font-family:var(--mono);font-size:13px;color:#C7CCD2}
+  .qbank .item:last-child{border-bottom:none}
+  .qbank .item .n{color:var(--graphite-2)}
+  .rubric{display:flex;flex-direction:column;gap:14px}
+  .rubric .r{display:grid;grid-template-columns:18px 1fr;gap:14px;align-items:start}
+  .rubric .r .pip{width:11px;height:11px;border-radius:50%;margin-top:5px}
+  .rubric .r .pip.s4{background:var(--signal);box-shadow:0 0 12px 2px rgba(47,224,174,.55)}
+  .rubric .r .pip.s3{background:var(--signal);opacity:.78}
+  .rubric .r .pip.s2{background:transparent;border:1.5px solid var(--signal)}
+  .rubric .r .pip.s1{background:transparent;border:1.5px solid var(--graphite)}
+  .rubric .r .name{font-weight:600;font-size:15px;color:var(--paper)}
+  .rubric .r .desc{font-family:var(--mono);font-size:12px;color:var(--graphite-2);margin-top:2px}
+  .dash{margin-top:22px}
+  .dash-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center}
+  .platforms{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .pf{display:flex;align-items:center;justify-content:space-between;background:var(--ink-3);border:1px solid var(--line-dark);border-radius:10px;padding:14px 16px}
+  .pf .pn{font-family:var(--mono);font-size:13px;color:#C7CCD2;display:inline-flex;align-items:center}
+  .pf .pn svg{width:20px;height:20px;display:block}
+  .pf .pv{font-family:var(--mono);font-size:12px;color:var(--signal)}
+  .pf .pv.dim{color:var(--graphite-2)}
+  .trend{display:flex;flex-direction:column;gap:10px}
+  .trend .tlabel{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--graphite-2)}
+  .trend .tnum{font-family:var(--mono);font-size:13px;color:var(--signal)}
+
+  /* ── four layers (§5) ────────────────────── */
+  .layers{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:48px}
+  .layer{background:var(--paper-2);border:1px solid var(--mist);border-radius:14px;padding:30px;position:relative}
+  .layer .ln{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;color:var(--signal-deep);font-weight:500}
+  .layer h3{font-size:20px;font-weight:600;letter-spacing:-0.01em;margin-top:14px}
+  .layer p{font-size:15px;color:#3A4048;margin-top:12px;line-height:1.55}
+  .layer .note{font-family:var(--mono);font-size:12px;color:var(--graphite);margin-top:14px;padding-top:14px;border-top:1px solid var(--mist);line-height:1.6}
+
+  /* ── §5 bento — adapted from combined-featured-section.tsx ── */
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:1fr;gap:28px;margin-top:52px}
+  .bcard{background:var(--paper-2);border:1px solid var(--mist);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px}
+  .bcard.lg{grid-column:span 6}
+  .bcard.b-authority{grid-column:span 7}
+  .bcard.b-content{grid-column:span 5}
+  .beyebrow{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite)}
+  .beyebrow .n{color:var(--signal-deep);font-weight:600}
+  .bcard h3{font-size:21px;font-weight:600;letter-spacing:-0.015em;line-height:1.28;margin:0}
+  .bcard h3 .muted{color:var(--graphite);font-weight:400;display:block;margin-top:5px}
+  .bcard .btext{font-size:15px;color:#3A4048;line-height:1.6;margin:0;flex:1 1 auto}
+  .bcard .btext .src{color:var(--graphite)}
+  .bviz{display:flex;flex-direction:column;gap:10px}
+  .bcap{font-family:var(--mono);font-size:11px;color:var(--graphite);line-height:1.5}
+  .bcap .src{color:var(--graphite-2)}
+  /* robots panel */
+  .robots{background:var(--paper);border:1px solid var(--mist);border-radius:12px;padding:16px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.5;color:#3A4048;overflow-x:auto}
+  .robots .cmt{color:var(--graphite-2);margin-bottom:6px}
+  .robots .row{display:grid;grid-template-columns:1fr auto 16px;gap:16px;align-items:center;padding:4px 0;white-space:nowrap}
+  .robots .al{color:var(--graphite-2)}
+  .robots .ok{color:var(--signal-deep);text-align:center;font-weight:600}
+  /* alert feed */
+  .afeed{display:flex;flex-direction:column;gap:10px}
+  .alert{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--mist);border-radius:10px;padding:11px 14px}
+  .alert .ai{width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;flex:none}
+  .alert .ai svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .alert .atitle{font-size:13.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .alert .atag{font-family:var(--mono);font-size:9px;letter-spacing:0.05em;text-transform:uppercase;color:var(--signal-deep);border:1px solid rgba(14,124,94,0.32);border-radius:4px;padding:1px 5px;font-weight:500}
+  .alert .atag.neutral{color:var(--graphite);border-color:var(--mist)}
+  .alert .adesc{font-family:var(--mono);font-size:11.5px;color:var(--graphite);margin-top:4px;line-height:1.5}
+  /* citation bars */
+  .cbars{display:flex;flex-direction:column;gap:14px}
+  .cbar{display:grid;grid-template-columns:100px 1fr 52px;gap:14px;align-items:center}
+  .cbar .cl{font-family:var(--mono);font-size:11.5px;color:#3A4048}
+  .cbar .ctrack{height:16px;background:var(--mist);border-radius:8px;overflow:hidden}
+  .cbar .cfill{height:100%;background:var(--graphite-2);border-radius:8px}
+  .cbar.lead .cfill{background:var(--signal-deep)}
+  .cbar .cv{font-family:var(--mono);font-size:11px;color:var(--graphite);white-space:nowrap;text-align:right}
+  /* entity-brief fan-out */
+  .fanout{display:flex;flex-direction:column;align-items:center;gap:4px}
+  .fan-node{font-family:var(--mono);font-size:11.5px;color:var(--ink);background:var(--paper);border:1px solid var(--ink);border-radius:8px;padding:7px 13px;font-weight:600}
+  .fan-svg{width:100%;max-width:220px;height:30px;display:block}
+  .fan-surfaces{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+  .fan-surfaces .chip{font-family:var(--mono);font-size:10.5px;color:var(--graphite);background:var(--paper);border:1px solid var(--mist);border-radius:6px;padding:5px 9px}
+
+  /* ── audit card (§6) ─────────────────────── */
+  .audit-grid{display:grid;grid-template-columns:1fr 0.92fr;gap:48px;align-items:start;margin-top:8px}
+  .audit-card{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:18px;padding:40px;position:relative;overflow:hidden}
+  .audit-card .glow{position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(47,224,174,.14),transparent 60%);bottom:-200px;right:-120px}
+  .audit-card .nameline{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);position:relative}
+  .audit-card .price{font-size:clamp(46px,6vw,64px);font-weight:600;letter-spacing:-0.03em;line-height:1;margin-top:14px;position:relative}
+  .audit-card .terms{font-family:var(--mono);font-size:13px;color:var(--signal);margin-top:14px;position:relative}
+  .audit-card .inside{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin:28px 0 16px;position:relative}
+  .audit-card ul{list-style:none;display:flex;flex-direction:column;gap:13px;position:relative}
+  .audit-card li{display:grid;grid-template-columns:18px 1fr;gap:12px;font-size:15px;color:#C7CCD2;line-height:1.45}
+  .audit-card li .tick{color:var(--signal);font-family:var(--mono);margin-top:1px}
+  .audit-card .btn{margin-top:30px;position:relative}
+  .audit-side h2{margin-bottom:0}
+  .audit-side .path{margin-top:28px;padding-top:28px;border-top:1px solid var(--line-dark)}
+  .audit-side .path .ph{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin-bottom:14px}
+  .audit-side .path p{font-size:15.5px;color:#C7CCD2;line-height:1.6}
+  .audit-side .path .nq{font-family:var(--mono);font-size:12px;color:var(--graphite-2);margin-top:14px}
+
+  /* ── limitations (§7) ────────────────────── */
+  .honest{display:grid;grid-template-columns:1fr 1fr;margin-top:44px}
+  .honest .col{padding-right:48px}
+  .honest .col.promise{padding-left:48px;padding-right:0;border-left:1px solid var(--mist)}
+  .honest .col .h{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--graphite);margin-bottom:22px}
+  .honest .col.promise .h{color:var(--signal-deep)}
+  .hlist{list-style:none;display:flex;flex-direction:column;gap:15px}
+  .hlist li{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;font-size:16px;line-height:1.5}
+  .hlist .hi{font-family:var(--mono);font-weight:600}
+  .hlist.neg li{color:var(--graphite)}
+  .hlist.neg .hi{color:var(--graphite-2)}
+  .hlist.pos li{color:#2A2F36}
+  .hlist.pos .hi{color:var(--signal-deep)}
+  .honest-close{margin:60px auto 0;max-width:780px;position:relative;padding:0 58px;text-align:center}
+  .honest-close p{font-size:clamp(20px,2.4vw,27px);font-weight:600;letter-spacing:-0.01em;line-height:1.32;color:var(--ink);margin:0}
+  .honest-close::before,.honest-close::after{font-family:var(--mono);font-weight:400;color:var(--signal-deep);font-size:2.6em;line-height:1;position:absolute;top:50%;transform:translateY(-54%)}
+  .honest-close::before{content:"[";left:16px}
+  .honest-close::after{content:"]";right:16px}
+  .honest-close .ev{color:var(--signal-deep)}
+
+  /* ── who / why ───────────────────────────── */
+  .who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+  .who-card{border:1px solid var(--line-dark);border-radius:14px;padding:26px;background:var(--ink-2)}
+  .who-card .ic{font-family:var(--mono);font-size:12px;color:var(--signal);letter-spacing:0.08em}
+  .who-card .t{font-size:18px;font-weight:600;margin-top:14px}
+  .who-card .d{font-size:14px;color:#C7CCD2;margin-top:8px;line-height:1.5}
+  .why-proof{font-family:var(--mono);font-size:13.5px;color:var(--graphite);margin-top:36px;padding:20px 24px;border-left:2px solid var(--signal-deep);background:var(--paper-2);border-radius:0 10px 10px 0;line-height:1.6;max-width:64ch}
+
+  /* ── start / contact (§10) ───────────────── */
+  .start-grid{display:grid;grid-template-columns:1fr 0.9fr;gap:56px;align-items:start;margin-top:8px}
+  form.contact{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:16px;padding:32px}
+  form.contact .fl{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin-bottom:8px}
+  form.contact .field{margin-bottom:20px}
+  form.contact input,form.contact textarea{width:100%;background:var(--ink-3);border:1px solid var(--line-dark);border-radius:9px;padding:12px 14px;color:var(--paper);font-family:var(--sans);font-size:15px;transition:border-color .2s}
+  form.contact textarea{min-height:84px;resize:vertical}
+  form.contact input:focus,form.contact textarea:focus{outline:none;border-color:var(--signal)}
+  form.contact input::placeholder,form.contact textarea::placeholder{color:var(--graphite)}
+  form.contact .btn{width:100%;justify-content:center;margin-top:6px}
+  .start-contact{margin-top:34px;font-family:var(--mono);font-size:14px;color:#C7CCD2;line-height:2}
+  .start-contact a{color:var(--signal)}
+  .start-contact .lbl{color:var(--graphite-2);display:inline-block;width:18px}
+
+  /* ── footer ──────────────────────────────── */
+  footer{background:var(--ink);color:var(--graphite-2);padding:64px 0 56px;border-top:1px solid var(--line-dark)}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap}
+  .foot-top .lk .wm{font-size:22px;color:var(--paper)}
+  .foot-top .lk .mark{width:26px;height:26px;color:var(--paper)}
+  .foot-tag{font-family:var(--mono);font-size:12px;letter-spacing:0.06em;color:var(--graphite-2);margin-top:14px}
+  .foot-contact{font-family:var(--mono);font-size:13px;color:var(--graphite-2);text-align:right;line-height:1.9}
+  .foot-contact a{color:var(--paper)}
+  .foot-rule{height:1px;background:var(--line-dark);margin:36px 0 24px}
+  .foot-fine{font-family:var(--mono);font-size:11.5px;color:var(--graphite-2);line-height:1.9;letter-spacing:0.02em}
+
+  /* ── reveal motion ───────────────────────── */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .fu{opacity:0;transform:translateY(16px);animation:fu .9s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes fu{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}.d4{animation-delay:.46s}.d5{animation-delay:.6s}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ── responsive ──────────────────────────── */
+  @media(max-width:820px){
+    .wrap{padding:0 24px}
+    section{padding:72px 0}
+    .nav-inner{padding:16px 24px}
+    .nav-menu{display:none}
+    .nav-burger{display:flex}
+    header.nav.open .nav-menu{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:20px;background:rgba(14,17,22,0.97);backdrop-filter:blur(14px) saturate(1.2);padding:24px;border-bottom:1px solid var(--line-dark)}
+    header.nav.open .nav-links{flex-direction:column;align-items:flex-start;gap:18px;font-size:14px}
+    header.nav.open .nav-cta{display:inline-flex}
+    .hero{padding-top:128px}
+    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .hero-visual{order:2}
+    .dash-card{transform:none;transform-origin:center}
+    .accent-chip{top:-14px;left:auto;right:8px;transform:rotate(-6deg) scale(.92)}
+    .trust{margin-top:48px;gap:18px}
+    .trust-logos{gap:14px 22px}
+    .stat-grid,.method,.layers,.who-grid{grid-template-columns:1fr}
+    .bento{grid-template-columns:1fr;grid-auto-rows:auto}
+    .bento .bcard{grid-column:auto}
+    .sec-head,.split{grid-template-columns:1fr;gap:18px}
+    .sec-head{margin-bottom:36px}
+    .demo-title,.seo-title{white-space:normal;margin-bottom:28px}
+    .shift-intro{margin-bottom:36px}
+    .shift-intro .shift-title{white-space:normal}
+    .closing-line{white-space:normal}
+    .device,.audit-grid,.honest,.start-grid,.dash-inner,.platforms{grid-template-columns:1fr;gap:28px}
+    .honest{gap:0}
+    .honest .col{padding:0}
+    .honest .col.promise{padding:26px 0 0;border-left:0;border-top:1px solid var(--mist)}
+    .honest-close{padding:0 34px;margin-top:44px}
+    .honest-close::before{left:4px}.honest-close::after{right:4px}
+    .device-demo{order:-1}
+    .foot-contact{text-align:left}
+    .foot-top{flex-direction:column;gap:24px}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- the cited line — primary mark (sprite) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="mark" viewBox="0 0 48 48">
+  <rect x="10" y="12" width="20" height="5" rx="2.5" fill="currentColor" opacity="0.4"/>
+  <rect class="dot" x="10" y="21.5" width="29" height="6.5" rx="3.25"/>
+  <rect x="10" y="33" width="15" height="5" rx="2.5" fill="currentColor" opacity="0.4"/>
+</symbol></svg>
+
+<!-- ════════════════ NAV ════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="lk" href="#top" aria-label="Lumicite home">
+      <svg class="mark" style="color:var(--paper)" role="img" aria-label="Lumicite mark"><use href="#mark"/></svg>
+      <span class="wm">lumicite</span>
+    </a>
+    <div class="nav-menu" id="navmenu">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#shift">the shift</a>
+        <a href="#how">how it works</a>
+        <a href="#audit">the audit</a>
+        <a href="#contact">contact</a>
+      </nav>
+      <a class="nav-cta" href="#audit">see where you stand <span class="ar">→</span></a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ════════════════ §0 · HERO ════════════════ -->
+<section class="hero dark" id="hero">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker fu d1">ai visibility, <b>measured</b> &nbsp;·&nbsp; for professional firms</div>
+        <h1 class="hero-title fu d2">How AI sees your&nbsp;firm.</h1>
+        <p class="hero-sub fu d3">When a client asks ChatGPT or Perplexity who to trust, your firm is either in the answer or it isn't. Lumicite measures where you stand across every major AI platform — then does the work to make you the firm it names.</p>
+        <div class="cta-row fu d4">
+          <a class="btn btn-primary" href="#audit">Start with a visibility audit <span class="ar">→</span></a>
+          <a class="btn-ghost" href="#how"><span class="u">see how it works</span></a>
+        </div>
+
+        <div class="hero-stat fu d5">
+          <span class="big">83%</span>
+          <span>of people now prefer an AI-generated answer to a page of links.</span>
+          <span class="src">— consumer research, 2026</span>
+        </div>
+      </div>
+
+      <div class="hero-visual fu d4">
+        <div class="accent-chip" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="dash-card" role="img" aria-label="Sample AI visibility scan: your firm is cited first; a competitor and a directory also appear; sample visibility score 71 of 120, up 29 since baseline">
+          <div class="dc-head">
+            <div>
+              <div class="dc-live"><span class="live-dot"></span> live scan</div>
+              <div class="dc-sub">visibility dashboard · sample</div>
+            </div>
+            <svg class="mark" style="width:24px;height:24px;color:var(--paper)" aria-hidden="true"><use href="#mark"/></svg>
+          </div>
+          <div class="dc-prompt"><span class="q">›</span> best chartered accountant for startup compliance</div>
+          <div class="dc-label">// firms the assistant names</div>
+          <div class="arow lit"><span class="state on"></span><span class="name">your firm</span><span class="tag">cited · top</span></div>
+          <div class="arow"><span class="state off"></span><span class="name">a national competitor</span><span class="tag">also named</span></div>
+          <div class="arow"><span class="state off"></span><span class="name">a generic directory</span><span class="tag">not specific</span></div>
+          <div class="dc-foot">
+            <div class="dc-metric"><div class="ml">visibility score</div><div class="mv">71 / 120</div></div>
+            <div class="dc-metric right"><div class="ml">since baseline</div><div class="mv sig">▲ +29</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust fu d5">
+      <div class="trust-label">measured across, every platform</div>
+      <ul class="trust-logos" aria-label="AI platforms Lumicite measures across">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFFFFF" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+          <span class="lname">ChatGPT</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#20B8CD" d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg>
+          <span class="lname">Perplexity</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gem" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4285F4"/><stop offset=".5" stop-color="#9B72CB"/><stop offset="1" stop-color="#D96570"/></linearGradient></defs><path fill="url(#gem)" d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg>
+          <span class="lname">Gemini</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="cop" x1="2" y1="4" x2="22" y2="20" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#22B4C8"/><stop offset=".5" stop-color="#4F6BED"/><stop offset="1" stop-color="#B14FD8"/></linearGradient></defs><path fill="none" stroke="url(#cop)" stroke-width="2.6" stroke-linecap="round" d="M9 5.6a6.6 6.6 0 1 0 6.4 6.4 3.8 3.8 0 1 1-3.9-3.9"/></svg>
+          <span class="lname">Copilot</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#D97757" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
+          <span class="lname">Claude</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ §1 · THE SHIFT ════════════════ -->
+<section id="shift">
+  <svg class="grid-pattern" aria-hidden="true">
+    <defs>
+      <pattern id="shiftgrid" width="40" height="40" patternUnits="userSpaceOnUse" x="-1" y="-1">
+        <path d="M.5 40V.5H40" fill="none"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" stroke-width="0" fill="url(#shiftgrid)"/>
+    <svg x="-1" y="-1" stroke-width="0" overflow="visible">
+      <rect width="39" height="39" x="201" y="81"/>
+      <rect width="39" height="39" x="401" y="41"/>
+      <rect width="39" height="39" x="561" y="81"/>
+      <rect width="39" height="39" x="721" y="121"/>
+      <rect width="39" height="39" x="801" y="41"/>
+      <rect width="39" height="39" x="961" y="81"/>
+      <rect width="39" height="39" x="321" y="201"/>
+      <rect width="39" height="39" x="481" y="161"/>
+      <rect width="39" height="39" x="641" y="241"/>
+      <rect width="39" height="39" x="881" y="201"/>
+      <rect width="39" height="39" x="761" y="241"/>
+      <rect width="39" height="39" x="1041" y="161"/>
+    </svg>
+  </svg>
+  <div class="wrap">
+    <div class="kicker reveal" data-n="01"><span>the shift</span><span class="rule"></span></div>
+    <div class="shift-intro">
+      <h2 class="reveal shift-title">The client journey changed quietly.</h2>
+      <p class="lead reveal">Referrals still start most engagements — that hasn't changed. What changed is what happens next. Before a client calls, they check. And increasingly that check happens inside an AI assistant, which answers not with ten links but with two or three specific firm names. The firms it names win the introduction. The ones it leaves out lose it, silently, without ever knowing they were considered.</p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card reveal">
+        <div class="fig"><span class="em">~50%</span></div>
+        <div class="txt">Organic search traffic is forecast to fall by around 50% by 2028.</div>
+        <div class="src">— Gartner</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="fig">28%</div>
+        <div class="txt">of people now use AI to help find a lawyer — roughly three times the figure from two years earlier.</div>
+        <div class="src">— Attorney at Work, 2025</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="fig">76% <span class="em">→</span> 38%</div>
+        <div class="txt">The overlap between Google's top-10 rankings and AI citations fell in under a year.</div>
+        <div class="src">— Ahrefs, 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ §2 · HOW AI SEES YOUR FIRM ════════════════ -->
+<section class="dark" id="demo">
+  <div class="wrap">
+    <div class="kicker reveal" data-n="02"><span>how ai sees your firm</span><span class="rule"></span></div>
+    <h2 class="reveal demo-title" style="color:var(--paper)">So — how does AI see your firm?</h2>
+
+    <div class="split demo-split">
+      <div class="s-body">
+        <p class="lead reveal">There's a simple way to find out. Ask an assistant the question your next client would ask: the best firm for the work you do. Watch which names come back. If yours isn't among them, a competitor is being recommended in your place — today, and every day until something changes.</p>
+        <hr class="para-div reveal">
+        <p class="lead reveal">Lumicite turns that moment into a number. The <strong>Visibility Score</strong> measures how often, and how prominently, AI names your firm across ChatGPT, Perplexity, Gemini, and Copilot — scored the same way every time, so the trend is real and not a guess.</p>
+        <div class="cta-row reveal">
+          <a class="btn btn-primary" href="#audit">Test your firm <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="scorecard reveal" aria-label="Sample visibility scorecard">
+      <div class="score-head">
+        <div>
+          <div class="who">sample — anonymised ca firm</div>
+          <div class="num">71<small>/120</small></div>
+          <div class="delta">▲ +29 since baseline</div>
+        </div>
+        <svg class="mark" style="width:48px;height:48px;color:var(--paper)" aria-hidden="true"><use href="#mark"/></svg>
+      </div>
+      <div class="qrow"><span class="state on"></span><span class="q">"best ca firm for startup compliance"</span><span class="tag cited">cited · top</span></div>
+      <div class="qrow"><span class="state on"></span><span class="q">"gst consultant for exporters"</span><span class="tag cited">cited</span></div>
+      <div class="qrow"><span class="state off"></span><span class="q">"chartered accountant for nri taxation"</span><span class="tag">competitor</span></div>
+      <div class="qrow"><span class="state on"></span><span class="q">"audit firm for private companies"</span><span class="tag cited">cited</span></div>
+      <div class="qrow"><span class="state off"></span><span class="q">"ca for esop valuation"</span><span class="tag">not present</span></div>
+        </div>
+        <p class="caption reveal">A sample score. Every query is tested on each platform and scored by the same rubric, month after month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ §3 · WHY THIS ISN'T SEO ════════════════ -->
+<section id="seo">
+  <svg class="grid-pattern" aria-hidden="true">
+    <defs>
+      <pattern id="seogrid" width="40" height="40" patternUnits="userSpaceOnUse" x="-1" y="-1">
+        <path d="M.5 40V.5H40" fill="none"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" stroke-width="0" fill="url(#seogrid)"/>
+    <svg x="-1" y="-1" stroke-width="0" overflow="visible">
+      <rect width="39" height="39" x="201" y="81"/>
+      <rect width="39" height="39" x="401" y="41"/>
+      <rect width="39" height="39" x="561" y="81"/>
+      <rect width="39" height="39" x="721" y="121"/>
+      <rect width="39" height="39" x="801" y="41"/>
+      <rect width="39" height="39" x="961" y="81"/>
+      <rect width="39" height="39" x="321" y="201"/>
+      <rect width="39" height="39" x="481" y="161"/>
+      <rect width="39" height="39" x="641" y="241"/>
+      <rect width="39" height="39" x="881" y="201"/>
+      <rect width="39" height="39" x="761" y="241"/>
+      <rect width="39" height="39" x="1041" y="161"/>
+    </svg>
+  </svg>
+  <div class="wrap">
+    <div class="kicker reveal" data-n="03"><span>why this isn't seo</span><span class="rule"></span></div>
+    <h2 class="reveal seo-title">This isn't SEO with a new name.</h2>
+
+    <div class="split seo-split">
+      <div class="device-demo reveal">
+        <div style="text-align:center">
+          <span class="bracketed">76% <b>→</b> 38%</span>
+          <div class="sub">top-10 rankings cited by AI · in under a year</div>
+        </div>
+      </div>
+
+      <div class="s-body">
+        <p class="lead reveal">Ranking on Google and being cited by AI used to be the same thing. They have come apart. In mid-2025, 76% of Google's AI answer citations came from pages already ranking in the top 10. By early 2026, that was 38%. — Ahrefs, 2026.</p>
+        <hr class="para-div reveal">
+        <p class="lead reveal">The systems now read, weigh, and choose sources on their own terms, and their answers change from one query to the next — so visibility is never "set and forget." Strong SEO is a foundation Lumicite builds on. It is no longer the whole job.</p>
+        <hr class="para-div reveal">
+        <h3 class="reveal">Ranking and being recommended have come apart.</h3>
+        <p class="lead reveal" style="margin-top:8px">The gap between where you rank and what AI repeats is the new ground to win — and it is measured, not assumed. — Ahrefs, 2026.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ §4 · HOW LUMICITE MEASURES ════════════════ -->
+<section class="dark" id="how">
+  <div class="wrap">
+    <div class="kicker reveal" data-n="04"><span>how lumicite measures</span><span class="rule"></span></div>
+    <div class="sec-head">
+      <h2 class="reveal" style="color:var(--paper)">Measured the same way, every month.</h2>
+      <div class="s-body">
+        <p class="lead reveal">Lumicite doesn't ask you to trust a black box. The method is visible from the first day:</p>
+      </div>
+    </div>
+
+    <div class="method">
+      <div class="panel reveal">
+        <h4><span>the query bank</span><span class="rule"></span></h4>
+        <div class="qbank">
+          <div class="item"><span class="n">01</span><span>"best ca firm for startup compliance"</span></div>
+          <div class="item"><span class="n">02</span><span>"gst consultant for exporters"</span></div>
+          <div class="item"><span class="n">03</span><span>"chartered accountant for nri taxation"</span></div>
+          <div class="item"><span class="n">04</span><span>"audit firm for private companies"</span></div>
+          <div class="item"><span class="n">05</span><span>"ca for esop valuation"</span></div>
+          <div class="item"><span class="n">··</span><span>+ the real questions your clients ask</span></div>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <h4><span>the scoring rubric</span><span class="rule"></span></h4>
+        <div class="rubric">
+          <div class="r"><span class="pip s4"></span><div><div class="name">Named first</div><div class="desc">your firm leads the answer</div></div></div>
+          <div class="r"><span class="pip s3"></span><div><div class="name">Named</div><div class="desc">present among the firms returned</div></div></div>
+          <div class="r"><span class="pip s2"></span><div><div class="name">Cited as a source</div><div class="desc">your pages referenced, not yet named</div></div></div>
+          <div class="r"><span class="pip s1"></span><div><div class="name">Absent</div><div class="desc">a competitor is recommended in your place</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash panel reveal">
+      <h4><span>tested on a fixed schedule · competitors tracked alongside</span><span class="rule"></span></h4>
+      <div class="dash-inner">
+        <div class="platforms">
+          <div class="pf"><span class="pn"><svg viewBox="0 0 24 24" aria-label="ChatGPT"><path fill="#FFFFFF" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span><span class="pv">3 / 5 named</span></div>
+          <div class="pf"><span class="pn"><svg viewBox="0 0 24 24" aria-label="Perplexity"><path fill="#20B8CD" d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg></span><span class="pv">2 / 5 named</span></div>
+          <div class="pf"><span class="pn"><svg viewBox="0 0 24 24" aria-label="Gemini"><defs><linearGradient id="gem2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4285F4"/><stop offset=".5" stop-color="#9B72CB"/><stop offset="1" stop-color="#D96570"/></linearGradient></defs><path fill="url(#gem2)" d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span><span class="pv dim">1 / 5 named</span></div>
+          <div class="pf"><span class="pn"><svg viewBox="0 0 24 24" aria-label="Copilot"><defs><linearGradient id="cop2" x1="2" y1="4" x2="22" y2="20" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#22B4C8"/><stop offset=".5" stop-color="#4F6BED"/><stop offset="1" stop-color="#B14FD8"/></linearGradient></defs><path fill="none" stroke="url(#cop2)" stroke-width="2.6" stroke-linecap="round" d="M9 5.6a6.6 6.6 0 1 0 6.4 6.4 3.8 3.8 0 1 1-3.9-3.9"/></svg></span><span class="pv">2 / 5 named</span></div>
+        </div>
+        <div class="trend">
+          <span class="tlabel">visibility score · last 4 months</span>
+          <svg viewBox="0 0 320 90" width="100%" height="90" preserveAspectRatio="none" aria-label="Visibility score trend rising from 42 to 71">
+            <line x1="0" y1="74" x2="320" y2="74" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+            <line x1="0" y1="40" x2="320" y2="40" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <polyline points="8,68 80,58 160,44 240,30 312,16" fill="none" stroke="#2FE0AE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="8" cy="68" r="3" fill="#8A9098"/>
+            <circle cx="80" cy="58" r="3" fill="#8A9098"/>
+            <circle cx="160" cy="44" r="3" fill="#8A9098"/>
+            <circle cx="240" cy="30" r="3" fill="#8A9098"/>
+            <circle cx="312" cy="16" r="4" fill="#2FE0AE"/>
+          </svg>
+          <span class="tnum">42 → 71 &nbsp;·&nbsp; ▲ +29</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="closing closing-line reveal" style="color:var(--paper)">You see the score, the queries behind it, and where it's heading</p>
+  </div>
+</section>
+
+<!-- ════════════════ §5 · WHAT LUMICITE DOES ════════════════ -->
+<section id="work">
+  <div class="wrap">
+    <div class="kicker reveal" data-n="05"><span>what lumicite does</span><span class="rule"></span></div>
+    <div class="sec-head">
+      <h2 class="reveal">Four layers of work.</h2>
+      <div class="s-body">
+        <p class="lead reveal">Visibility is earned in a specific order. Lumicite builds through four layers, then keeps them in place.</p>
+      </div>
+    </div>
+
+    <div class="bento">
+
+      <!-- 01 · technical foundation (top-left, large) -->
+      <div class="bcard lg reveal">
+        <div class="beyebrow">technical foundation</div>
+        <h3>A site machines can actually read. <span class="muted">The groundwork AI needs before it can quote you.</span></h3>
+        <p class="btext">Schema, a consistent business profile, and a crawl path that welcomes the AI bots most sites quietly block.</p>
+        <div class="bviz">
+          <div class="robots" aria-label="robots.txt allowing AI crawlers">
+            <div class="cmt"># robots.txt</div>
+            <div class="row"><span>User-agent: GPTBot</span><span class="al">Allow: /</span><span class="ok">✓</span></div>
+            <div class="row"><span>User-agent: ClaudeBot</span><span class="al">Allow: /</span><span class="ok">✓</span></div>
+            <div class="row"><span>User-agent: PerplexityBot</span><span class="al">Allow: /</span><span class="ok">✓</span></div>
+            <div class="row"><span>User-agent: Google-Extended</span><span class="al">Allow: /</span><span class="ok">✓</span></div>
+          </div>
+          <div class="bcap">The AI crawlers most sites block — explicitly welcomed.</div>
+        </div>
+      </div>
+
+      <!-- 04 · ongoing monitoring (top-right, large) -->
+      <div class="bcard lg reveal">
+        <div class="beyebrow">ongoing monitoring</div>
+        <h3>Because the answers change every month. <span class="muted">Tracked, flagged, corrected.</span></h3>
+        <p class="btext">The sources AI cites change constantly. Lumicite re-scans every platform, tracks competitors, and corrects misstatements as they appear.</p>
+        <div class="bviz">
+          <div class="afeed" aria-label="Sample monitoring alerts">
+            <div class="alert">
+              <span class="ai"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg></span>
+              <div><div class="atitle">Hallucination caught <span class="atag">corrected</span></div><div class="adesc">ChatGPT misstated your fee basis</div></div>
+            </div>
+            <div class="alert">
+              <span class="ai"><svg viewBox="0 0 24 24"><path d="M3 8h14l-4-4"/><path d="M21 16H7l4 4"/></svg></span>
+              <div><div class="atitle">Competitor movement <span class="atag neutral">tracked</span></div><div class="adesc">a rival now cited for "audit firm for private companies"</div></div>
+            </div>
+            <div class="alert">
+              <span class="ai"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+              <div><div class="atitle">Score update <span class="atag">+6</span></div><div class="adesc">visibility this month</div></div>
+            </div>
+          </div>
+          <div class="bcap">40–60% of cited sources change month to month. <span class="src">— EMARKETER, 2026</span></div>
+        </div>
+      </div>
+
+      <!-- 03 · authority and citations (bottom-left, wide) -->
+      <div class="bcard b-authority reveal">
+        <div class="beyebrow">authority and citations</div>
+        <h3>Earn mentions where AI looks. <span class="muted">The sources that actually feed the answers.</span></h3>
+        <p class="btext">AI leans on a few trusted sources. Lumicite earns genuine presence there — plus citations, reviews, and earned placements.</p>
+        <div class="bviz">
+          <div class="cbars" aria-label="Where AI citations come from">
+            <div class="cbar lead"><span class="cl">Reddit</span><span class="ctrack"><span class="cfill" style="width:100%"></span></span><span class="cv">40%</span></div>
+            <div class="cbar"><span class="cl">LinkedIn</span><span class="ctrack"><span class="cfill" style="width:62.5%"></span></span><span class="cv">25%</span></div>
+            <div class="cbar"><span class="cl">Review sites</span><span class="ctrack"><span class="cfill" style="width:50%"></span></span><span class="cv">20%</span></div>
+            <div class="cbar"><span class="cl">Directories</span><span class="ctrack"><span class="cfill" style="width:37.5%"></span></span><span class="cv">15%</span></div>
+          </div>
+          <div class="bcap">Where AI citations come from — Reddit leads across major platforms. <span class="src">— citation research, 2026</span></div>
+        </div>
+      </div>
+
+      <!-- 02 · content architecture (bottom-right) -->
+      <div class="bcard b-content reveal">
+        <div class="beyebrow">content architecture</div>
+        <h3>Written the way AI reads. <span class="muted">Answer-first, not brochure-first.</span></h3>
+        <p class="btext">Pages rewritten answer-first, one canonical description deployed everywhere AI looks, and your clients' real questions mapped to direct-answer FAQs.</p>
+        <div class="bviz">
+          <div class="fanout" aria-label="One entity brief, deployed to every surface">
+            <div class="fan-node">the entity brief</div>
+            <svg class="fan-svg" viewBox="0 0 200 30" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <path d="M100 4 L30 26 M100 4 L100 26 M100 4 L170 26" fill="none" stroke="#0E7C5E" stroke-width="1.4" opacity="0.5"/>
+              <circle cx="100" cy="4" r="2.6" fill="#0E7C5E"/>
+            </svg>
+            <div class="fan-surfaces">
+              <span class="chip">AI profiles</span>
+              <span class="chip">directories</span>
+              <span class="chip">listings</span>
+            </div>
+          </div>
+          <div class="bcap">44% of citations come from a page's first third. <span class="src">— citation research, 2026</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ §6 · WHERE TO START ════════════════ -->
+<section class="dark" id="audit">
+  <div class="wrap">
+    <div class="kicker reveal" data-n="06"><span>where to start</span><span class="rule"></span></div>
+    <div class="audit-grid">
+      <div class="audit-card reveal">
+        <div class="glow"></div>
+        <div class="nameline">the visibility audit</div>
+        <div class="price">₹9,500</div>
+        <div class="terms">Delivered in 5–7 working days · fully creditable</div>
+        <div class="inside">inside the audit</div>
+        <ul>
+          <li><span class="tick">→</span><span>25 test queries across five AI platforms</span></li>
+          <li><span class="tick">→</span><span>The competitors appearing in your place</span></li>
+          <li><span class="tick">→</span><span>A technical and content review of your site</span></li>
+          <li><span class="tick">→</span><span>The sources AI is citing in your field right now</span></li>
+          <li><span class="tick">→</span><span>A 15-page report you keep, whatever you decide next</span></li>
+        </ul>
+        <a class="btn btn-primary" href="#contact">Book your visibility audit — ₹9,500 <span class="ar">→</span></a>
+      </div>
+      <div class="audit-side">
+        <h2 style="color:var(--paper)">One clear step to begin.</h2>
+        <p class="lead">Every engagement starts the same way — with a visibility audit. A complete, honest read on where your firm stands in AI answers today.</p>
+        <div class="path">
+          <div class="ph">what follows the audit</div>
+          <p>What follows is shaped by what the audit finds: a fixed-scope <strong>90-day Sprint</strong> to build the foundation, then a monthly <strong>Retainer</strong> to hold and extend your position. Both are scoped and priced after the audit, once the work is clear — so the number reflects your firm, not a guess.</p>
+          <div class="nq">No quote theatre.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ §7 · WHAT LUMICITE WILL NOT PROMISE ════════════════ -->
+<section id="honest">
+  <svg class="grid-pattern" aria-hidden="true">
+    <defs>
+      <pattern id="honestgrid" width="40" height="40" patternUnits="userSpaceOnUse" x="-1" y="-1">
+        <path d="M.5 40V.5H40" fill="none"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" stroke-width="0" fill="url(#honestgrid)"/>
+    <svg x="-1" y="-1" stroke-width="0" overflow="visible">
+      <rect width="39" height="39" x="201" y="81"/>
+      <rect width="39" height="39" x="401" y="41"/>
+      <rect width="39" height="39" x="561" y="81"/>
+      <rect width="39" height="39" x="721" y="121"/>
+      <rect width="39" height="39" x="801" y="41"/>
+      <rect width="39" height="39" x="961" y="81"/>
+      <rect width="39" height="39" x="321" y="201"/>
+      <rect width="39" height="39" x="481" y="161"/>
+      <rect width="39" height="39" x="641" y="241"/>
+      <rect width="39" height="39" x="881" y="201"/>
+      <rect width="39" height="39" x="761" y="241"/>
+      <rect width="39" height="39" x="1041" y="161"/>
+    </svg>
+  </svg>
+  <div class="wrap">
+    <div class="kicker reveal" data-n="07"><span>the honest part</span><span class="rule"></span></div>
+    <h2 class="reveal">What Lumicite will not promise.</h2>
+    <p class="lead reveal">AI platforms are probabilistic — their answers shift, and no one controls them outright.</p>
+    <div class="honest">
+      <div class="col reveal">
+        <div class="h">will not promise</div>
+        <ul class="hlist neg">
+          <li><span class="hi">✕</span><span>the top spot in AI answers</span></li>
+          <li><span class="hi">✕</span><span>a guaranteed ranking</span></li>
+          <li><span class="hi">✕</span><span>a set number of citations</span></li>
+        </ul>
+      </div>
+      <div class="col promise reveal">
+        <div class="h">does promise</div>
+        <ul class="hlist pos">
+          <li><span class="hi">✓</span><span>complete, careful delivery of every layer of work</span></li>
+          <li><span class="hi">✓</span><span>measurement you can verify yourself</span></li>
+          <li><span class="hi">✓</span><span>an honest read on your trajectory, including the slow months</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="honest-close reveal">
+      <p>Anyone who guarantees AI rankings is guessing. Lumicite would rather show you <span class="ev">the evidence</span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ §8 · WHO IT'S FOR ════════════════ -->
+<section class="dark" id="who">
+  <div class="wrap">
+    <div class="kicker reveal" data-n="08"><span>who it's for</span><span class="rule"></span></div>
+    <div class="sec-head">
+      <h2 class="reveal" style="color:var(--paper)">Built for professional firms.</h2>
+      <div class="s-body">
+        <p class="lead reveal">Lumicite works with a deliberately narrow set of firms — chartered accountants, lawyers in specific practice areas, and specialty clinics. Owner-led practices whose clients research carefully before they commit, and for whom a single new client is worth a great deal.</p>
+      </div>
+    </div>
+
+    <div class="who-grid">
+      <div class="who-card reveal"><div class="ic">/ 01</div><div class="t">Chartered accountants</div><div class="d">Practices whose clients vet carefully before they commit.</div></div>
+      <div class="who-card reveal"><div class="ic">/ 02</div><div class="t">Lawyers</div><div class="d">In specific practice areas where reputation decides the brief.</div></div>
+      <div class="who-card reveal"><div class="ic">/ 03</div><div class="t">Specialty clinics</div><div class="d">Owner-led, where a single new patient is worth a great deal.</div></div>
+    </div>
+
+    <p class="lead reveal" style="margin-top:40px">It isn't for everyone. If what you need is broad, low-cost marketing or a quick traffic spike, Lumicite is the wrong fit — and we'll tell you so.</p>
+  </div>
+</section>
+
+<!-- ════════════════ §9 · WHY LUMICITE ════════════════ -->
+<section id="why">
+  <div class="wrap">
+    <div class="kicker reveal" data-n="09"><span>why lumicite</span><span class="rule"></span></div>
+    <div class="sec-head">
+      <h2 class="reveal">A specialist, built from the technical side.</h2>
+      <div class="s-body">
+        <p class="lead reveal">Most AI-visibility work comes from marketing teams who added "AI" to an existing brochure. Lumicite was built from the other direction — by a technology and AI background, with a working understanding of how these systems actually decide what to cite and recommend. That depth shows up in two places you can feel: the precision of the work, and the honesty of the reporting.</p>
+        <p class="lead reveal">The method is the same for every client, the data behind every claim is third-party and named, and the measurement is yours to inspect.</p>
+      </div>
+    </div>
+    <div class="why-proof reveal">Results from completed engagements will be published here — with real numbers and the client's consent — as the first programmes finish.</div>
+  </div>
+</section>
+
+<!-- ════════════════ §10 · START ════════════════ -->
+<section class="dark" id="contact">
+  <div class="wrap">
+    <div class="kicker reveal" data-n="10"><span>start</span><span class="rule"></span></div>
+    <div class="start-grid">
+      <div class="start-copy">
+        <h2 class="reveal" style="color:var(--paper)">See where you stand.</h2>
+        <p class="lead reveal">The audit is the first step, and the smallest one. Within a week you'll know exactly how AI sees your firm today — and what it would take to change the answer.</p>
+        <div class="cta-row reveal">
+          <a class="btn btn-primary" href="#contact">Book your visibility audit — ₹9,500 <span class="ar">→</span></a>
+        </div>
+        <div class="start-contact reveal">
+          <div><span class="lbl">→</span> <a href="mailto:contact@lumicite.in">contact@lumicite.in</a></div>
+          <div><span class="lbl">→</span> <a href="https://wa.me/" rel="noopener">WhatsApp</a></div>
+        </div>
+      </div>
+
+      <form class="contact reveal" action="mailto:contact@lumicite.in" method="post" enctype="text/plain" aria-label="Visibility audit enquiry">
+        <div class="field">
+          <label class="fl" for="f-name">name</label>
+          <input id="f-name" name="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label class="fl" for="f-firm">firm</label>
+          <input id="f-firm" name="firm" type="text" placeholder="Your firm" required>
+        </div>
+        <div class="field">
+          <label class="fl" for="f-email">email</label>
+          <input id="f-email" name="email" type="email" placeholder="you@firm.in" required>
+        </div>
+        <div class="field">
+          <label class="fl" for="f-does">what your firm does</label>
+          <textarea id="f-does" name="what_your_firm_does" placeholder="e.g. chartered accountancy — startup compliance & GST"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Request the audit <span class="ar">→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="lk" href="#top" aria-label="Lumicite home">
+          <svg class="mark" style="color:var(--paper)" aria-hidden="true"><use href="#mark"/></svg>
+          <span class="wm">lumicite</span>
+        </a>
+        <div class="foot-tag">how AI sees your firm.</div>
+      </div>
+      <div class="foot-contact">
+        <a href="mailto:contact@lumicite.in">contact@lumicite.in</a><br>
+        <a href="https://www.lumicite.in">www.lumicite.in</a>
+      </div>
+    </div>
+    <div class="foot-rule"></div>
+    <div class="foot-fine">
+      Lumicite measures AI visibility; it does not guarantee AI rankings.<br>
+      Figures are drawn from named third-party research (Ahrefs, Gartner, Attorney at Work, and others), current as of 2026.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // sticky nav state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // mobile menu
+  const burger = document.getElementById('burger');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('.nav-links a, .nav-cta').forEach((a) =>
+    a.addEventListener('click', () => { nav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); })
+  );
+
+  // reveal on scroll
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
