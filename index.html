@@ -375,6 +375,8 @@
   form.contact input:focus,form.contact textarea:focus{outline:none;border-color:var(--signal)}
   form.contact input::placeholder,form.contact textarea::placeholder{color:var(--graphite)}
   form.contact .btn{width:100%;justify-content:center;margin-top:6px}
+  .form-thanks{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:16px;padding:32px;font-size:16px;line-height:1.6;color:#C7CCD2}
+  .form-thanks strong{color:var(--signal);font-weight:600;display:block;margin-top:4px}
   .start-contact{margin-top:34px;font-family:var(--mono);font-size:14px;color:#C7CCD2;line-height:2}
   .start-contact a{color:var(--signal)}
   .start-contact .lbl{color:var(--graphite-2);display:inline-block;width:18px}
@@ -431,6 +433,14 @@
     .shift-intro{margin-bottom:36px}
     .shift-intro .shift-title{white-space:normal}
     .closing-line{white-space:normal}
+    /* §2 mobile: para1 → scorecard → para2 → CTA */
+    .demo-split{gap:24px}
+    .demo-split .s-body{display:contents}
+    .demo-split .para-div{display:none}
+    .demo-split .lead:nth-of-type(1){order:1}
+    .demo-split .demo-card{order:2}
+    .demo-split .lead:nth-of-type(2){order:3}
+    .demo-split .cta-row{order:4;margin-top:0}
     .device,.audit-grid,.honest,.start-grid,.dash-inner,.platforms{grid-template-columns:1fr;gap:28px}
     .honest{gap:0}
     .honest .col{padding:0}
@@ -575,7 +585,7 @@
     <div class="kicker reveal" data-n="01"><span>the shift</span><span class="rule"></span></div>
     <div class="shift-intro">
       <h2 class="reveal shift-title">The client journey changed quietly.</h2>
-      <p class="lead reveal">Referrals still start most engagements — that hasn't changed. What changed is what happens next. Before a client calls, they check. And increasingly that check happens inside an AI assistant, which answers not with ten links but with two or three specific firm names. The firms it names win the introduction. The ones it leaves out lose it, silently, without ever knowing they were considered.</p>
+      <p class="lead reveal">Referrals still start most engagements. But before a client calls, they check — and increasingly that check happens inside an AI assistant that names just two or three firms. The ones it leaves out lose the client, silently.</p>
     </div>
 
     <div class="stat-grid">
@@ -960,7 +970,6 @@
         <p class="lead reveal">The method is the same for every client, the data behind every claim is third-party and named, and the measurement is yours to inspect.</p>
       </div>
     </div>
-    <div class="why-proof reveal">Results from completed engagements will be published here — with real numbers and the client's consent — as the first programmes finish.</div>
   </div>
 </section>
 
@@ -977,11 +986,13 @@
         </div>
         <div class="start-contact reveal">
           <div><span class="lbl">→</span> <a href="mailto:contact@lumicite.in">contact@lumicite.in</a></div>
-          <div><span class="lbl">→</span> <a href="https://wa.me/" rel="noopener">WhatsApp</a></div>
+          <div><span class="lbl">→</span> <a href="https://www.linkedin.com/company/lumicite" target="_blank" rel="noopener">LinkedIn</a></div>
         </div>
       </div>
 
-      <form class="contact reveal" action="mailto:contact@lumicite.in" method="post" enctype="text/plain" aria-label="Visibility audit enquiry">
+      <form class="contact reveal" name="audit-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Visibility audit enquiry">
+        <input type="hidden" name="form-name" value="audit-enquiry">
+        <p hidden><label>Leave this empty if you are human <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="field">
           <label class="fl" for="f-name">name</label>
           <input id="f-name" name="name" type="text" placeholder="Your name" required>
@@ -1000,6 +1011,7 @@
         </div>
         <button class="btn btn-primary" type="submit">Request the audit <span class="ar">→</span></button>
       </form>
+      <div class="form-thanks" id="form-thanks" hidden>Thank you — your enquiry is in. <strong>Lumicite will reply within one working day.</strong></div>
     </div>
   </div>
 </section>
@@ -1058,6 +1070,22 @@
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
   } else {
     document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+  }
+
+  // contact form → Netlify Forms (AJAX submit, stay on page, show thank-you)
+  const auditForm = document.querySelector('form.contact');
+  if (auditForm) {
+    auditForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const body = new URLSearchParams(new FormData(auditForm)).toString();
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+        .then(() => {
+          const thanks = document.getElementById('form-thanks');
+          auditForm.hidden = true;
+          if (thanks) thanks.hidden = false;
+        })
+        .catch(() => { window.location.href = 'mailto:contact@lumicite.in'; });
+    });
   }
 </script>
 </body>
