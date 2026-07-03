@@ -366,7 +366,30 @@
   .who-card .d{font-size:14px;color:#C7CCD2;margin-top:8px;line-height:1.5}
   .why-proof{font-family:var(--mono);font-size:13.5px;color:var(--graphite);margin-top:36px;padding:20px 24px;border-left:2px solid var(--signal-deep);background:var(--paper-2);border-radius:0 10px 10px 0;line-height:1.6;max-width:64ch}
 
-  /* ── start / contact (§10) ───────────────── */
+  /* ── faq (§10) ───────────────────────────── */
+  #faq{background:var(--paper-2)}
+  .faq-list{max-width:900px;margin-top:8px}
+  .faq-item{border-top:1px solid var(--mist)}
+  .faq-item:last-of-type{border-bottom:1px solid var(--mist)}
+  .faq-q{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:36px;
+    padding:26px 2px;font-size:19px;font-weight:600;letter-spacing:-0.01em;line-height:1.4;color:var(--ink);transition:color .2s}
+  .faq-q::-webkit-details-marker{display:none}
+  .faq-q::marker{content:""}
+  .faq-item:hover .faq-q{color:var(--signal-deep)}
+  .faq-ic{flex:none;position:relative;width:15px;height:15px;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .faq-ic::before,.faq-ic::after{content:"";position:absolute;background:var(--signal-deep);border-radius:2px}
+  .faq-ic::before{top:6.5px;left:0;width:15px;height:2px}
+  .faq-ic::after{left:6.5px;top:0;width:2px;height:15px}
+  .faq-item[open] .faq-ic{transform:rotate(135deg)}
+  .faq-a{color:#2A2F36;font-size:16.5px;line-height:1.66;max-width:72ch;padding:2px 0 30px}
+  .faq-a p + p{margin-top:14px}
+  .faq-a a{color:var(--signal-deep);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+  .faq-item[open] .faq-a{animation:faqIn .5s cubic-bezier(.2,.7,.2,1)}
+  @keyframes faqIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  .faq-more{max-width:900px;margin-top:36px;font-family:var(--mono);font-size:13.5px;color:var(--graphite);line-height:1.6}
+  .faq-more a{color:var(--signal-deep);text-decoration:underline;text-underline-offset:3px}
+
+  /* ── start / contact (§11) ───────────────── */
   .start-grid{display:grid;grid-template-columns:1fr 0.9fr;gap:56px;align-items:start;margin-top:8px}
   form.contact{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:16px;padding:32px}
   form.contact .fl{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin-bottom:8px}
@@ -392,6 +415,30 @@
   .foot-contact a{color:var(--paper)}
   .foot-rule{height:1px;background:var(--line-dark);margin:36px 0 24px}
   .foot-fine{font-family:var(--mono);font-size:11.5px;color:var(--graphite-2);line-height:1.9;letter-spacing:0.02em}
+  .foot-legal{display:flex;gap:24px;flex-wrap:wrap;margin-top:22px}
+  .foot-legal button{font-family:var(--mono);font-size:11.5px;letter-spacing:0.04em;color:var(--graphite-2);background:none;border:0;padding:0;cursor:pointer;transition:color .2s;border-bottom:1px solid transparent}
+  .foot-legal button:hover{color:var(--paper);border-bottom-color:var(--graphite)}
+
+  /* legal modals (privacy / terms) */
+  .modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
+  .modal[hidden]{display:none}
+  .modal-backdrop{position:absolute;inset:0;background:rgba(8,10,13,0.74);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  .modal-panel{position:relative;display:flex;flex-direction:column;width:min(760px,100%);max-height:88vh;background:var(--paper-2);color:var(--ink);border-radius:16px;box-shadow:0 50px 120px -30px rgba(0,0,0,.75);overflow:hidden}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px;border-bottom:1px solid var(--mist);flex:none}
+  .modal-head h2{font-size:20px;font-weight:600;letter-spacing:-0.01em;margin:0;color:var(--ink)}
+  .modal-x{flex:none;width:36px;height:36px;border-radius:8px;border:1px solid var(--mist);background:transparent;color:var(--graphite);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
+  .modal-x:hover{border-color:var(--graphite);color:var(--ink)}
+  .modal-body{padding:24px 28px 32px;overflow-y:auto}
+  .modal-body .upd{font-family:var(--mono);font-size:12px;color:var(--graphite);margin:0 0 20px}
+  .modal-body h3{font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--ink);margin:26px 0 10px}
+  .modal-body h4{font-size:13.5px;font-weight:600;color:var(--ink);margin:18px 0 8px}
+  .modal-body p{font-size:14.5px;line-height:1.65;color:#2A2F36;margin:0 0 12px}
+  .modal-body ul{margin:0 0 14px;padding-left:20px}
+  .modal-body li{font-size:14.5px;line-height:1.6;color:#2A2F36;margin-bottom:7px}
+  .modal-body strong{color:var(--ink);font-weight:600}
+  .modal-body a{color:var(--signal-deep);border-bottom:1px solid currentColor}
+  .modal-body hr{border:0;border-top:1px solid var(--mist);margin:24px 0}
+  .modal-body .fineprint{font-size:12.5px;color:var(--graphite);font-style:italic}
 
   /* ── reveal motion ───────────────────────── */
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
@@ -443,6 +490,8 @@
     .demo-split .lead:nth-of-type(2){order:3}
     .demo-split .cta-row{order:4;margin-top:0}
     .device,.audit-grid,.honest,.start-grid,.dash-inner,.platforms{grid-template-columns:1fr;gap:28px}
+    .faq-q{font-size:17px;gap:20px;padding:22px 2px}
+    .faq-a{font-size:16px}
     .honest{gap:0}
     .honest .col{padding:0}
     .honest .col.promise{padding:26px 0 0;border-left:0;border-top:1px solid var(--mist)}
@@ -451,6 +500,10 @@
     .device-demo{order:-1}
     .foot-contact{text-align:left}
     .foot-top{flex-direction:column;gap:24px}
+    .modal{padding:0}
+    .modal-panel{width:100%;height:100%;max-height:100%;border-radius:0}
+    .modal-head{padding:18px 20px}
+    .modal-body{padding:20px 20px 28px}
   }
 </style>
 </head>
@@ -476,6 +529,7 @@
         <a href="#shift">the shift</a>
         <a href="#how">how it works</a>
         <a href="#audit">the audit</a>
+        <a href="#faq">faq</a>
         <a href="#contact">contact</a>
       </nav>
       <a class="nav-cta" href="#audit">see where you stand <span class="ar">→</span></a>
@@ -974,10 +1028,68 @@
   </div>
 </section>
 
-<!-- ════════════════ §10 · START ════════════════ -->
+<!-- ════════════════ §10 · FAQ ════════════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="kicker reveal" data-n="10"><span>frequently asked</span><span class="rule"></span></div>
+    <div class="sec-head">
+      <h2 class="reveal">Frequently asked questions.</h2>
+      <div class="s-body">
+        <p class="lead reveal">Straight answers on AI search visibility, what Lumicite does, and how a firm gets started.</p>
+      </div>
+    </div>
+
+    <div class="faq-list reveal">
+      <details class="faq-item" open>
+        <summary class="faq-q">What is AI search visibility?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>AI search visibility is whether your firm gets named when someone asks an AI assistant like ChatGPT or Perplexity to recommend a service in your field. When a potential client asks an AI for the best firm in your category and city, the AI returns specific names. AI search visibility is whether yours is one of them.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How is AEO and GEO different from SEO?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>SEO gets your website ranked on Google. AEO and GEO get your firm named and cited inside AI answers, which works through a different mechanism. The two share a technical foundation, but they have measurably diverged. According to Ahrefs, the overlap between Google's top 10 results and AI citations fell from 76% to 38% in under a year, which means ranking on Google no longer guarantees being cited by AI.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What is Lumicite?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Lumicite is a specialist AI search visibility firm. Lumicite helps professional services firms become visible, recommended, and cited when potential clients search for their services on AI platforms. The work is answer engine and generative engine optimisation, delivered as a done-for-you service rather than a dashboard you run yourself.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Which AI platforms does Lumicite optimise for?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Lumicite optimises for and monitors the major AI platforms, including ChatGPT, Claude, Google Gemini, Perplexity, Microsoft Copilot, and Google's AI Mode and AI Overviews. Coverage spans the assistants and answer engines that clients actually use to research and shortlist firms.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Why should my firm care about appearing in AI answers?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Because clients increasingly check AI before they contact you, even after a referral. Research on professional services shows most people validate a recommendation online before making contact, and that validation is shifting onto AI platforms. Firms that appear get shortlisted, and firms that are invisible lose those clients silently.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Who does Lumicite work with?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Lumicite works with owner-operated professional services firms, primarily chartered accountants, specialty clinics, and boutique consultancies. These are firms where clients research and shortlist providers before making contact, and where being named by an AI carries real commercial weight.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How does Lumicite improve a firm's AI visibility?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Lumicite follows a structured process across three stages: an audit that measures where the firm stands, a 90-day sprint that builds visibility, and a retainer that maintains and extends it. The build works across four layers: technical foundation, content architecture, authority signals, and ongoing monitoring.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How does Lumicite measure results?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Lumicite reports an AI Visibility Score across the major platforms on a defined query bank, tracked from a baseline through every month. Alongside it, Lumicite tracks presence rate, share of voice against competitors, citation count, branded search growth, and referral traffic from AI platforms.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How long does it take to see results?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>Most firms see early movement within the 90-day sprint, as the technical and content work takes effect. AI visibility compounds over time, so results strengthen through the retainer period. Lumicite reports the trajectory every month, so progress stays visible throughout.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How do I get started with Lumicite?<span class="faq-ic" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p>The usual starting point is the AI visibility audit, which shows exactly where your firm stands in AI search today. The audit then informs whether and how to proceed with a sprint. To begin, contact Lumicite at <a href="mailto:contact@lumicite.in">contact@lumicite.in</a>.</p></div>
+      </details>
+    </div>
+
+    <p class="faq-more reveal">Have a question that isn't here? <a href="#contact">Ask Lumicite directly →</a></p>
+  </div>
+</section>
+
+<!-- ════════════════ §11 · START ════════════════ -->
 <section class="dark" id="contact">
   <div class="wrap">
-    <div class="kicker reveal" data-n="10"><span>start</span><span class="rule"></span></div>
+    <div class="kicker reveal" data-n="11"><span>start</span><span class="rule"></span></div>
     <div class="start-grid">
       <div class="start-copy">
         <h2 class="reveal" style="color:var(--paper)">See where you stand.</h2>
@@ -1040,8 +1152,247 @@
       Lumicite measures AI visibility; it does not guarantee AI rankings.<br>
       Figures are drawn from named third-party research (Ahrefs, Gartner, Attorney at Work, and others), current as of 2026.
     </div>
+    <div class="foot-legal">
+      <button type="button" data-modal="modal-privacy">Privacy policy</button>
+      <button type="button" data-modal="modal-terms">Terms of use</button>
+    </div>
   </div>
 </footer>
+
+<!-- ════════════════ LEGAL MODALS ════════════════ -->
+<div class="modal" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="modal-privacy-title" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel">
+    <header class="modal-head">
+      <h2 id="modal-privacy-title">Privacy policy</h2>
+      <button class="modal-x" type="button" data-close aria-label="Close">&times;</button>
+    </header>
+    <div class="modal-body">
+      <p class="upd">Last updated: 29-06-2026</p>
+      <p>This privacy policy explains how Lumicite collects, uses, shares, and protects personal data. It applies to the Lumicite website at www.lumicite.in, to enquiries and communications with Lumicite, and to the AI visibility services Lumicite provides to its clients.</p>
+      <p>In this policy, "Lumicite" refers to Lumicite, a sole proprietorship, with its place of business at Thane, Maharashtra. Lumicite is the entity responsible for the personal data described here, except where this policy states that Lumicite is acting on behalf of a client.</p>
+      <p>If anything here is unclear, or you want to exercise a right described below, contact Lumicite at <a href="mailto:contact@lumicite.in">contact@lumicite.in</a>.</p>
+      <hr>
+      <h3>1. A note on the two roles Lumicite plays</h3>
+      <p>Lumicite handles personal data in two different capacities, and it matters which one applies.</p>
+      <p>As a <strong>data fiduciary</strong> (controller), Lumicite decides how and why data is handled. This applies to website visitors, people who make an enquiry, and the contact and billing details of Lumicite's own clients.</p>
+      <p>As a <strong>data processor</strong>, Lumicite handles personal data only on a client's instructions, to deliver the service the client has engaged Lumicite for. This applies to the data inside a client's own platforms that Lumicite is given access to, such as a Google Business Profile, Google Search Console, website content, or customer reviews. For that data, the client is the fiduciary and the client's own privacy policy governs it. Lumicite acts on the client's behalf under the terms of use and any separate agreement.</p>
+      <p>This policy describes both roles. Sections that apply only to one are marked.</p>
+      <hr>
+      <h3>2. What Lumicite collects</h3>
+      <h4>From website visitors and people who enquire</h4>
+      <ul>
+        <li>Identity and contact details you provide: name, firm name, role, email address, phone number, and anything you write in an enquiry or message.</li>
+        <li>Technical and usage data collected automatically when you visit the website: IP address, browser type, device information, pages viewed, and referring source. This is described further in the cookies section.</li>
+      </ul>
+      <h4>From clients (Lumicite as fiduciary)</h4>
+      <ul>
+        <li>Business and contact information: firm name, registered details, partner or owner names, professional credentials, addresses, contact numbers, and email addresses.</li>
+        <li>Billing information needed to raise GST-compliant invoices and collect payment, such as billing name, address, and GSTIN where applicable.</li>
+        <li>Records of communication with Lumicite over email, WhatsApp, calls, and meetings.</li>
+      </ul>
+      <p>Lumicite does not collect or store full payment card or bank account numbers. Payments are processed by a third-party payment provider, described in the sharing section below.</p>
+      <h4>Data Lumicite accesses on a client's behalf (Lumicite as processor)</h4>
+      <p>To deliver the service, a client may grant Lumicite access to platforms the client controls. This can include a Google Business Profile, Google Search Console, website analytics, a content management system, and directory or review listings. These platforms may contain personal data, such as the names of the client's staff, reviewer names, and enquiry details left by the client's own customers. Lumicite accesses this data only to perform the agreed work, and only as instructed by the client.</p>
+      <h4>Data Lumicite publishes on a client's instruction</h4>
+      <p>Part of the service involves publishing and propagating a client's business and professional information across public surfaces so that AI systems and directories can recognise and cite the client accurately. This can include the firm's name, services, locations, and the names and qualifications of named professionals at the firm. Lumicite does this on the client's instruction and on the basis that the client has confirmed it has the right and any necessary consent to publish that information. This is described further in the section on AI platforms and public sources.</p>
+      <hr>
+      <h3>3. How Lumicite uses personal data</h3>
+      <p>Lumicite uses personal data to:</p>
+      <ul>
+        <li>respond to enquiries and provide information about its services;</li>
+        <li>deliver, manage, and improve the services a client has engaged Lumicite for;</li>
+        <li>carry out the agreed AI visibility work, including audits, technical implementation, content work, citation building, and monitoring;</li>
+        <li>raise invoices, collect payment, and keep accounting records as required by law;</li>
+        <li>communicate about a project, including updates, reports, and review meetings;</li>
+        <li>maintain security, prevent misuse, and keep records of the work performed; and</li>
+        <li>comply with legal and regulatory obligations.</li>
+      </ul>
+      <p>Lumicite does not sell personal data, and does not use it for advertising unrelated to its own services.</p>
+      <hr>
+      <h3>4. The basis on which Lumicite handles data</h3>
+      <p>Where the Digital Personal Data Protection Act 2023 applies, Lumicite handles personal data on the basis of your consent, or on the basis of a legitimate use permitted by that Act, such as where you have voluntarily provided data for a specified purpose, or where handling is necessary to perform a service you or your firm have requested.</p>
+      <p>You may withdraw consent at any time by contacting Lumicite. Withdrawing consent does not affect handling carried out before withdrawal, and may mean Lumicite can no longer provide a requested service.</p>
+      <hr>
+      <h3>5. Cookies and analytics</h3>
+      <p>The Lumicite website uses a small number of cookies and similar technologies.</p>
+      <ul>
+        <li><strong>Essential cookies</strong> keep the website working and secure. These are always active.</li>
+        <li><strong>Analytics cookies</strong> help Lumicite understand how the website is used, so it can be improved. These run only where permitted.</li>
+      </ul>
+      <p>Lumicite may use privacy-respecting website analytics to measure traffic and page performance. Where analytics are provided by a third party, that provider processes the data on Lumicite's behalf. You can control or block cookies through your browser settings. Blocking some cookies may affect how the website works.</p>
+      <hr>
+      <h3>6. When and with whom Lumicite shares data</h3>
+      <p>Lumicite shares personal data only as needed to run its business and deliver its services, and only with parties that are bound to protect it. These fall into the following categories.</p>
+      <p><strong>Service and infrastructure providers.</strong> Lumicite uses third-party tools to run its operations, such as email and document hosting, project management, invoicing and accounting, and customer communication. Representative providers include a business productivity suite, an accounting tool, a project workspace, and a messaging platform. These providers handle data on Lumicite's behalf.</p>
+      <p><strong>Payment provider.</strong> Payments are collected through a third-party payment gateway. That provider handles your payment information directly under its own privacy policy. Lumicite receives confirmation of payment and the billing details needed for invoicing, not your full card or bank details.</p>
+      <p><strong>AI platforms and monitoring tools.</strong> To measure and report on a client's AI visibility, Lumicite queries AI platforms such as ChatGPT, Perplexity, Google Gemini, and Microsoft Copilot, and may use third-party monitoring tools. These queries are about the client's business and category, and are used to produce visibility scores and reports. Some of these platforms and tools are operated by companies outside India.</p>
+      <p><strong>Public directories and platforms.</strong> Where a client has instructed Lumicite to publish or correct the client's business listings, Lumicite submits the client's business information to public directories, professional listings, and review platforms. Information published in these places is, by design, publicly visible.</p>
+      <p><strong>Legal and regulatory disclosure.</strong> Lumicite may disclose data where required by law, by a court, or by a competent authority, or to protect its rights, property, or safety.</p>
+      <p>Lumicite does not sell personal data to anyone.</p>
+      <hr>
+      <h3>7. AI platforms and public sources</h3>
+      <p>The purpose of Lumicite's service is to make a client's business legible to AI systems and to the public sources those systems draw on. This has two consequences worth stating plainly.</p>
+      <p>First, information Lumicite publishes about a client on the client's instruction, such as the firm's name, services, locations, and named professionals, is intended to be public and to be picked up by AI systems, search engines, and directories. Once information is public, Lumicite cannot control how third-party AI systems or websites store, repeat, or present it.</p>
+      <p>Second, AI platforms are operated by independent third parties. Lumicite does not control their systems, their data practices, or how they generate answers. When Lumicite queries these platforms for monitoring, it does so as an ordinary user of those services, and those platforms handle the queries under their own terms and privacy policies.</p>
+      <hr>
+      <h3>8. Transfers outside India</h3>
+      <p>Some of the tools and platforms Lumicite relies on are operated by companies based outside India, and personal data may be handled on servers located outside India as a result. Where Lumicite transfers personal data outside India, it does so in line with applicable law and takes reasonable steps to ensure the data remains protected.</p>
+      <hr>
+      <h3>9. How long Lumicite keeps data</h3>
+      <p>Lumicite keeps personal data only for as long as it is needed for the purpose it was collected for, and for as long as required to meet legal, accounting, and tax obligations.</p>
+      <ul>
+        <li>Enquiry data from people who do not become clients is kept for a reasonable period and then deleted.</li>
+        <li>Client records, deliverables, and reports are kept for the duration of the engagement and for a reasonable period afterward.</li>
+        <li>Invoicing and accounting records are kept for the period required by Indian tax and company law.</li>
+      </ul>
+      <p>When data is no longer needed, Lumicite deletes it or removes its personal identifiers.</p>
+      <hr>
+      <h3>10. How Lumicite protects data</h3>
+      <p>Lumicite uses reasonable technical and organisational measures to protect personal data, including access controls, the use of reputable service providers, and the principle of requesting only the access it needs. For example, where Lumicite manages a client's Google Business Profile, it requests "Manager" access rather than "Owner" access.</p>
+      <p>No method of transmission or storage is completely secure. Lumicite cannot guarantee absolute security, but it works to protect data and to address any incident promptly.</p>
+      <hr>
+      <h3>11. Your rights</h3>
+      <p>Subject to applicable law, including the Digital Personal Data Protection Act 2023, you have the right to:</p>
+      <ul>
+        <li>ask what personal data Lumicite holds about you and how it is handled;</li>
+        <li>ask Lumicite to correct or update inaccurate or incomplete data;</li>
+        <li>ask Lumicite to erase data that is no longer needed, subject to legal retention requirements;</li>
+        <li>withdraw consent where handling is based on consent;</li>
+        <li>nominate another person to exercise your rights in the event of death or incapacity, as provided under the Act; and</li>
+        <li>raise a grievance about how your data has been handled.</li>
+      </ul>
+      <p>Where Lumicite handles data on behalf of a client as a processor, requests about that data should usually be directed to the client, who is the fiduciary. Lumicite will support the client in responding.</p>
+      <p>To exercise any right, contact Lumicite using the details below. Lumicite may need to verify your identity before acting.</p>
+      <hr>
+      <h3>12. Grievance and contact</h3>
+      <p>If you have a question, a request, or a grievance about how Lumicite handles personal data, contact:</p>
+      <p><strong>Rahul Jagtap</strong><br>Lumicite<br>Email: <a href="mailto:contact@lumicite.in">contact@lumicite.in</a><br>Thane, Maharashtra</p>
+      <p>Lumicite aims to acknowledge and respond to requests within the timelines required by applicable law. If you are not satisfied with the response, you may have the right to approach the Data Protection Board of India.</p>
+      <hr>
+      <h3>13. Children</h3>
+      <p>Lumicite's services are intended for businesses and professionals, not for children. Lumicite does not knowingly collect personal data from anyone under the age of 18. If you believe a child has provided personal data to Lumicite, contact Lumicite so it can be removed.</p>
+      <hr>
+      <h3>14. Changes to this policy</h3>
+      <p>Lumicite may update this policy from time to time as its services, tools, or legal obligations change. The updated version will be posted on this page with a revised "last updated" date. Where changes are significant, Lumicite will take reasonable steps to make them known.</p>
+      <hr>
+      <p class="fineprint">This page is provided for general information about how Lumicite handles personal data. It does not form part of any contract unless a separate agreement says so.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-terms" role="dialog" aria-modal="true" aria-labelledby="modal-terms-title" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel">
+    <header class="modal-head">
+      <h2 id="modal-terms-title">Terms of use</h2>
+      <button class="modal-x" type="button" data-close aria-label="Close">&times;</button>
+    </header>
+    <div class="modal-body">
+      <p class="upd">Last updated: 29-06-2026</p>
+      <p>These terms govern your use of the Lumicite website at www.lumicite.in and, where you engage Lumicite, the services Lumicite provides. Please read them before using the website or engaging Lumicite.</p>
+      <p>In these terms, "Lumicite" refers to Lumicite, a sole proprietorship, with its place of business at Thane, Maharashtra. "You" refers to the person or firm using the website or engaging the services. "Services" refers to the AI visibility work described below.</p>
+      <p>By using the website or engaging Lumicite, you agree to these terms. If you do not agree, please do not use the website or the services.</p>
+      <hr>
+      <h3>1. About Lumicite and the services</h3>
+      <p>Lumicite is a specialist AI visibility firm. It works in the fields of answer engine optimisation (AEO) and generative engine optimisation (GEO): the practice of helping a firm be recognised, described accurately, and cited when potential clients ask AI platforms such as ChatGPT, Perplexity, Google Gemini, and Microsoft Copilot for services in its category. This is a distinct discipline from traditional search engine optimisation.</p>
+      <p>Lumicite's services are delivered in defined stages, which currently include:</p>
+      <ul>
+        <li>a one-time AI visibility audit;</li>
+        <li>a fixed-scope 90-day visibility sprint, in two variants by firm size; and</li>
+        <li>an ongoing monthly visibility retainer, in two tiers, with optional add-ons.</li>
+      </ul>
+      <p>The exact scope, deliverables, price, and duration of any engagement are set out in the proposal, order, or agreement Lumicite provides to you. Those engagement-specific terms, once accepted, apply alongside these terms. If there is a conflict, the engagement-specific terms control.</p>
+      <hr>
+      <h3>2. The nature of AI visibility work</h3>
+      <p>This section is important, and Lumicite states it plainly because it is central to how Lumicite works.</p>
+      <p>AI platforms generate their answers using probabilistic systems that Lumicite does not own or control. Their outputs change over time, vary between users, and can differ from one query to the next. Independent research shows that the sources these systems cite shift substantially from month to month.</p>
+      <p>Because of this, <strong>Lumicite does not promise, guarantee, or warrant any particular AI ranking, citation, mention, position, traffic level, lead volume, or business outcome.</strong> No firm can honestly guarantee these, because they depend on third-party systems outside any provider's control.</p>
+      <p>What Lumicite commits to is the complete and professional delivery of the agreed work, and transparent reporting on your visibility trajectory using a defined, repeatable measurement method. Lumicite measures where you stand, does the agreed work to improve it, and shows you the evidence. Any figures, statistics, examples, or sample results shown on the website or in materials are illustrative or drawn from cited third-party research, and are not a promise of the results you will achieve.</p>
+      <hr>
+      <h3>3. Your responsibilities</h3>
+      <p>To allow Lumicite to deliver the services, you agree to:</p>
+      <ul>
+        <li>provide accurate and complete information about your firm;</li>
+        <li>grant the access Lumicite reasonably needs to platforms you control, such as your Google Business Profile, Search Console, analytics, and website, and to arrange that access where a third party manages those platforms for you;</li>
+        <li>review and approve content, listings, and other deliverables within the agreed timelines, so the project can progress;</li>
+        <li>ensure that any information you ask Lumicite to publish about your firm or its people is accurate, and that you have the right and any necessary consent to publish it; and</li>
+        <li>pay the fees for the services in line with these terms and your engagement.</li>
+      </ul>
+      <p>Lumicite is not responsible for delays or results caused by missing access, late approvals, or inaccurate information provided by you.</p>
+      <hr>
+      <h3>4. Professional and regulatory compliance</h3>
+      <p>Many of Lumicite's clients are members of regulated professions, such as chartered accountants, medical practitioners, and consultants, whose professional bodies set rules on how they may present and promote their practice.</p>
+      <p>You remain solely responsible for ensuring that your participation in the services, and any information published about your firm, complies with the rules of your professional body and with applicable law. Lumicite frames its work as accurate information dissemination and AI visibility infrastructure, and will work with you to respect the constraints of your profession, but Lumicite does not provide legal or professional-conduct advice and does not act as your compliance adviser. If you are unsure whether a particular activity is permitted for your profession, you should confirm this with your professional body or your own adviser before proceeding.</p>
+      <hr>
+      <h3>5. Third-party platforms and tools</h3>
+      <p>The services depend on platforms and tools operated by independent third parties, including AI platforms, search engines, directories, review sites, and monitoring tools. Lumicite does not control these third parties. They may change their features, rules, algorithms, pricing, or availability, or may restrict access, at any time and without notice.</p>
+      <p>Lumicite is not responsible for the acts, omissions, changes, downtime, or decisions of these third parties, or for any effect they have on your visibility. Where a third-party tool that Lumicite uses for measurement or delivery changes or becomes unavailable, Lumicite will use reasonable efforts to substitute a comparable tool.</p>
+      <hr>
+      <h3>6. Fees, invoicing, and payment</h3>
+      <p>Fees for each engagement are set out in your proposal or order. Unless stated otherwise:</p>
+      <ul>
+        <li>Fees are quoted in Indian rupees and are exclusive of GST, which is charged in addition where applicable.</li>
+        <li>The audit is a one-time fee, payable before delivery. Where stated in your engagement, the audit fee is creditable toward a sprint if you begin a sprint within the stated period.</li>
+        <li>The sprint is a fixed-scope engagement billed in equal monthly instalments across its duration. Each instalment is due as set out in your engagement.</li>
+        <li>The retainer is billed monthly in advance, with a minimum initial term as stated in your engagement, after which it continues month to month until ended in line with these terms.</li>
+        <li>Where you choose an annual prepay option, the full annual fee is payable in advance, and the stated saving applies to that prepayment.</li>
+        <li>Add-ons are billed as set out for each add-on.</li>
+      </ul>
+      <p>Payments are collected through a third-party payment provider. Lumicite raises GST-compliant invoices for amounts due. If a payment is late, Lumicite may pause work on your engagement until the amount is settled, and may charge reasonable interest or costs where permitted by law.</p>
+      <hr>
+      <h3>7. Cancellation and refunds</h3>
+      <p>The following applies unless your engagement states otherwise.</p>
+      <p><strong>Audit.</strong> Because the audit is a one-time piece of work delivered within a short window, the audit fee is non-refundable once work on it has begun.</p>
+      <p><strong>Sprint.</strong> The sprint is a fixed-scope engagement. If you end a sprint after it has begun, you remain liable for the instalments covering work performed and committed up to the effective end date. Fees for work already delivered are non-refundable.</p>
+      <p><strong>Retainer.</strong> During the minimum initial term, the retainer cannot be cancelled for convenience, and fees for that term remain due. After the minimum term, either party may end the retainer by giving 30 days' written notice. Fees already paid for a current month, or prepaid annually, are non-refundable, except that Lumicite may at its discretion refund the unused, whole-month portion of an annual prepayment after deducting the value of work and any discount already applied.</p>
+      <p>Nothing in this section limits any right you have that cannot be excluded under the Consumer Protection Act 2019 or other applicable law.</p>
+      <hr>
+      <h3>8. Intellectual property</h3>
+      <p><strong>Deliverables.</strong> On full payment of the fees due for an engagement, you own the final client-facing deliverables Lumicite creates specifically for you, such as the content written for your website, your FAQ copy, your entity brief, and your reports.</p>
+      <p><strong>Lumicite's methods and materials.</strong> Lumicite retains ownership of everything that sits behind those deliverables: its methodology, frameworks, scoring systems, templates, internal tools, dashboards, checklists, and know-how, including any improvements made during your engagement. Lumicite grants you a licence to use these only as part of receiving the services. Nothing in an engagement transfers ownership of Lumicite's underlying methods to you.</p>
+      <p><strong>Website content.</strong> The Lumicite website, its text, design, logo, and brand, are owned by Lumicite or its licensors and are protected by law. You may not copy, reproduce, or reuse them without Lumicite's written permission, except for normal personal viewing of the website.</p>
+      <p><strong>Anonymised learnings.</strong> Lumicite may use general, anonymised, non-identifying learnings from its work to improve its services. Lumicite will not publish your firm as a case study or name you as a client without your consent.</p>
+      <hr>
+      <h3>9. Confidentiality</h3>
+      <p>Each party may receive information from the other that is confidential. Each party agrees to keep the other's confidential information private, to use it only to perform or receive the services, and not to disclose it to others except to those who need it and are bound to keep it confidential, or where disclosure is required by law. This obligation continues after the engagement ends. It does not apply to information that is public through no fault of the receiving party, or that a party already held or developed independently.</p>
+      <hr>
+      <h3>10. Disclaimers</h3>
+      <p>The website and its content are provided on an "as is" and "as available" basis. To the extent permitted by law, Lumicite does not warrant that the website will be uninterrupted, error-free, or free of harmful components, and does not warrant that the information on it is complete or current at all times.</p>
+      <p>The services are provided with reasonable skill and care. Except as expressly stated in these terms or your engagement, and to the extent permitted by law, Lumicite gives no other warranties, whether express or implied, and in particular gives no warranty as to any specific AI visibility, ranking, citation, traffic, lead, or commercial outcome, as set out in section 2.</p>
+      <hr>
+      <h3>11. Limitation of liability</h3>
+      <p>To the extent permitted by law:</p>
+      <ul>
+        <li>Lumicite is not liable for any indirect, incidental, special, or consequential loss, or for any loss of profit, revenue, business, goodwill, or anticipated savings, arising from the website or the services.</li>
+        <li>Lumicite is not liable for any loss caused by third-party platforms, tools, or systems outside its control, as described in section 5.</li>
+        <li>Lumicite's total liability arising out of or in connection with an engagement, whether in contract, negligence, or otherwise, is limited to the total fees you paid to Lumicite for that engagement in the three months before the event giving rise to the claim.</li>
+      </ul>
+      <p>Nothing in these terms excludes or limits liability that cannot be excluded or limited under applicable law.</p>
+      <hr>
+      <h3>12. Indemnity</h3>
+      <p>You agree to indemnify Lumicite against reasonable losses, claims, and costs arising from your breach of these terms, from inaccurate information you provided, from content or information you instructed Lumicite to publish, or from your failure to comply with the rules of your profession or with applicable law.</p>
+      <hr>
+      <h3>13. Term, suspension, and termination</h3>
+      <p>These terms apply while you use the website and for the duration of any engagement. Lumicite may suspend or end your access to the website, or an engagement, if you materially breach these terms or your engagement, if payment is overdue, or if required by law. The sections on fees due, intellectual property, confidentiality, disclaimers, limitation of liability, and indemnity survive the end of an engagement.</p>
+      <hr>
+      <h3>14. Acceptable use of the website</h3>
+      <p>When using the website, you agree not to misuse it, including by attempting to gain unauthorised access, interfering with its operation, scraping it at scale, introducing harmful code, or using it for any unlawful purpose. Lumicite may restrict access if you do.</p>
+      <hr>
+      <h3>15. Governing law and jurisdiction</h3>
+      <p>These terms are governed by the laws of India. The courts at Thane, Maharashtra have exclusive jurisdiction over any dispute arising from these terms, the website, or the services, subject to any right you have under applicable consumer law to bring proceedings elsewhere.</p>
+      <hr>
+      <h3>16. Changes to these terms</h3>
+      <p>Lumicite may update these terms from time to time as its services or legal obligations change. The updated version will be posted on this page with a revised "last updated" date, and applies from the date it is posted. For an active engagement, the terms accepted at the start of that engagement continue to apply to it unless both parties agree otherwise.</p>
+      <hr>
+      <h3>17. Contact</h3>
+      <p>For any question about these terms, contact:</p>
+      <p>Lumicite<br>Email: <a href="mailto:contact@lumicite.in">contact@lumicite.in</a><br>Thane, Maharashtra</p>
+      <hr>
+      <p class="fineprint">These terms are provided for general use on the Lumicite website. The specific terms of any paid engagement are set out in the proposal, order, or agreement Lumicite provides to you.</p>
+    </div>
+  </div>
+</div>
 
 <script>
   // sticky nav state
@@ -1088,6 +1439,93 @@
         .catch(() => { window.location.href = 'mailto:contact@lumicite.in'; });
     });
   }
+
+  // legal modals (privacy / terms)
+  let lastModalTrigger = null;
+  const openModal = (id) => {
+    const m = document.getElementById(id);
+    if (!m) return;
+    lastModalTrigger = document.activeElement;
+    m.hidden = false;
+    document.body.style.overflow = 'hidden';
+    const x = m.querySelector('.modal-x');
+    if (x) x.focus();
+  };
+  const closeModal = (m) => {
+    if (!m) return;
+    m.hidden = true;
+    if (!document.querySelector('.modal:not([hidden])')) document.body.style.overflow = '';
+    if (lastModalTrigger) { lastModalTrigger.focus(); lastModalTrigger = null; }
+  };
+  document.querySelectorAll('[data-modal]').forEach((t) =>
+    t.addEventListener('click', (e) => { e.preventDefault(); openModal(t.getAttribute('data-modal')); })
+  );
+  document.querySelectorAll('.modal [data-close]').forEach((el) =>
+    el.addEventListener('click', () => closeModal(el.closest('.modal')))
+  );
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal:not([hidden])').forEach(closeModal);
+  });
+</script>
+
+<!-- FAQPage structured data — keep in sync with the visible FAQ (§10) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is AI search visibility?",
+      "acceptedAnswer": { "@type": "Answer", "text": "AI search visibility is whether your firm gets named when someone asks an AI assistant like ChatGPT or Perplexity to recommend a service in your field. When a potential client asks an AI for the best firm in your category and city, the AI returns specific names. AI search visibility is whether yours is one of them." }
+    },
+    {
+      "@type": "Question",
+      "name": "How is AEO and GEO different from SEO?",
+      "acceptedAnswer": { "@type": "Answer", "text": "SEO gets your website ranked on Google. AEO and GEO get your firm named and cited inside AI answers, which works through a different mechanism. The two share a technical foundation, but they have measurably diverged. According to Ahrefs, the overlap between Google's top 10 results and AI citations fell from 76% to 38% in under a year, which means ranking on Google no longer guarantees being cited by AI." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Lumicite?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Lumicite is a specialist AI search visibility firm. Lumicite helps professional services firms become visible, recommended, and cited when potential clients search for their services on AI platforms. The work is answer engine and generative engine optimisation, delivered as a done-for-you service rather than a dashboard you run yourself." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI platforms does Lumicite optimise for?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Lumicite optimises for and monitors the major AI platforms, including ChatGPT, Claude, Google Gemini, Perplexity, Microsoft Copilot, and Google's AI Mode and AI Overviews. Coverage spans the assistants and answer engines that clients actually use to research and shortlist firms." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why should my firm care about appearing in AI answers?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Because clients increasingly check AI before they contact you, even after a referral. Research on professional services shows most people validate a recommendation online before making contact, and that validation is shifting onto AI platforms. Firms that appear get shortlisted, and firms that are invisible lose those clients silently." }
+    },
+    {
+      "@type": "Question",
+      "name": "Who does Lumicite work with?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Lumicite works with owner-operated professional services firms, primarily chartered accountants, specialty clinics, and boutique consultancies. These are firms where clients research and shortlist providers before making contact, and where being named by an AI carries real commercial weight." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Lumicite improve a firm's AI visibility?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Lumicite follows a structured process across three stages: an audit that measures where the firm stands, a 90-day sprint that builds visibility, and a retainer that maintains and extends it. The build works across four layers: technical foundation, content architecture, authority signals, and ongoing monitoring." }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Lumicite measure results?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Lumicite reports an AI Visibility Score across the major platforms on a defined query bank, tracked from a baseline through every month. Alongside it, Lumicite tracks presence rate, share of voice against competitors, citation count, branded search growth, and referral traffic from AI platforms." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to see results?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most firms see early movement within the 90-day sprint, as the technical and content work takes effect. AI visibility compounds over time, so results strengthen through the retainer period. Lumicite reports the trajectory every month, so progress stays visible throughout." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get started with Lumicite?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The usual starting point is the AI visibility audit, which shows exactly where your firm stands in AI search today. The audit then informs whether and how to proceed with a sprint. To begin, contact Lumicite at contact@lumicite.in." }
+    }
+  ]
+}
 </script>
 </body>
 </html>
