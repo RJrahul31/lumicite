@@ -1,3 +1,17 @@
 [build]
   # Static site — no build step. Serve the repo root as-is.
   publish = "."
+
+# Force the canonical host: apex (lumicite.in) → www (www.lumicite.in), 301.
+# Without this, Google can index both as duplicate sites and split ranking signals.
+[[redirects]]
+  from = "https://lumicite.in/*"
+  to = "https://www.lumicite.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://lumicite.in/*"
+  to = "https://www.lumicite.in/:splat"
+  status = 301
+  force = true

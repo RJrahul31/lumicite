@@ -1,0 +1,6 @@
+# robots.txt for lumicite.in
+# Allow all crawlers full access.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lumicite.in/sitemap.xml
