@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How AI answer engines decide which firm to recommend — Lumicite</title>
+<meta name="description" content="A firm can be eliminated at any of seven steps before it ever reaches the answer. What decides the outcome at each step, which levers you actually control, and why most spending goes to the wrong one.">
+<meta name="theme-color" content="#0E1116">
+<link rel="canonical" href="https://www.lumicite.in/blog/how-ai-engines-decide-which-firm-to-recommend/">
+
+<!-- favicons -->
+<link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/favicon/favicon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- open graph / twitter -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="How AI answer engines decide which firm to recommend — Lumicite">
+<meta property="og:description" content="A firm can be eliminated at any of seven steps before it ever reaches the answer. What decides the outcome at each step, which levers you actually control, and why most spending goes to the wrong one.">
+<meta property="og:image" content="https://www.lumicite.in/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.lumicite.in/blog/how-ai-engines-decide-which-firm-to-recommend/">
+<meta property="og:site_name" content="Lumicite">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How AI answer engines decide which firm to recommend — Lumicite">
+<meta name="twitter:description" content="A firm can be eliminated at any of seven steps before it ever reaches the answer. What decides the outcome at each step, which levers you actually control, and why most spending goes to the wrong one.">
+<meta name="twitter:image" content="https://www.lumicite.in/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://www.lumicite.in/blog/how-ai-engines-decide-which-firm-to-recommend/#article",
+      "headline": "How AI answer engines decide which firm to recommend",
+      "description": "A firm can be eliminated at any of seven steps before it ever reaches the answer. What decides the outcome at each step, which levers you actually control, and why most spending goes to the wrong one.",
+      "url": "https://www.lumicite.in/blog/how-ai-engines-decide-which-firm-to-recommend/",
+      "datePublished": "2026-09-17",
+      "dateModified": "2026-09-17",
+      "inLanguage": "en",
+      "image": "https://www.lumicite.in/assets/og-image.png",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.lumicite.in/blog/how-ai-engines-decide-which-firm-to-recommend/" },
+      "author": { "@id": "https://www.lumicite.in/blog/author/rahul-jagtap/#person" },
+      "publisher": { "@id": "https://www.lumicite.in/#organization" },
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "Growth Memo"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "SE Ranking"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "SEMrush"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "5WPR AI Platform Citation Index"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Tinuiti Q1 AI Citation Trends Report"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "LLM citation pattern research"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.lumicite.in/blog/author/rahul-jagtap/#person",
+      "name": "Rahul Jagtap",
+      "jobTitle": "Founder",
+      "description": "AI search visibility expert and founder of Lumicite.",
+      "url": "https://www.lumicite.in/blog/author/rahul-jagtap/",
+      "sameAs": ["https://www.linkedin.com/in/rahul-jagtap-906002194/"],
+      "worksFor": { "@id": "https://www.lumicite.in/#organization" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.lumicite.in/#organization",
+      "name": "Lumicite",
+      "url": "https://www.lumicite.in",
+      "email": "contact@lumicite.in",
+      "description": "AI search visibility for professional firms."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.lumicite.in/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.lumicite.in/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "How AI answer engines decide which firm to recommend" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.lumicite.in/blog/how-ai-engines-decide-which-firm-to-recommend/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does ChatGPT decide which businesses to recommend?",
+          "acceptedAnswer": { "@type": "Answer", "text": "ChatGPT rewrites the question into multiple sub-queries, retrieves candidate pages from a live search index, reranks them on relevance and authority, then selects specific passages to build its answer from. A business that is not in the retrieved index is eliminated before quality is ever assessed." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does ChatGPT recommend my competitor instead of my firm?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Usually because your competitor is retrievable and you are not, or because their description is consistent across enough third-party surfaces for the system to identify them confidently while yours is not. It is rarely a judgment about which firm is better." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you pay to appear in AI search results?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, not in the organic answer. AI recommendations are produced by retrieval and synthesis, not by placement, and no agency or platform sells inclusion in an organic AI answer. Advertising products inside AI interfaces are separate and clearly marked." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="alternate" type="application/rss+xml" title="Lumicite blog" href="/feed.xml">
+
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- the cited line — primary mark (sprite) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="mark" viewBox="0 0 48 48">
+  <rect x="10" y="12" width="20" height="5" rx="2.5" fill="currentColor" opacity="0.4"/>
+  <rect class="dot" x="10" y="21.5" width="29" height="6.5" rx="3.25"/>
+  <rect x="10" y="33" width="15" height="5" rx="2.5" fill="currentColor" opacity="0.4"/>
+</symbol></svg>
+
+<!-- ════════════════ NAV ════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="lk" href="/" aria-label="Lumicite home">
+      <svg class="mark" style="color:var(--paper)" role="img" aria-label="Lumicite mark"><use href="#mark"/></svg>
+      <span class="wm">lumicite</span>
+    </a>
+    <div class="nav-menu" id="navmenu">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#shift">the shift</a>
+        <a href="/#how">how it works</a>
+        <a href="/#audit">the audit</a>
+        <a href="/blog/">blog</a>
+        <a href="/#faq">faq</a>
+        <a href="/#contact">contact</a>
+      </nav>
+      <a class="nav-cta" href="/#audit">see where you stand <span class="ar">→</span></a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<article>
+
+  <!-- ════════════════ ARTICLE HEAD ════════════════ -->
+  <header class="post-head dark">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">home</a><span class="sep">/</span><a href="/blog/">blog</a>
+      </nav>
+      <div class="post-kicker">
+        <span class="topic">mechanics</span><span class="sep">·</span>
+        <time datetime="2026-09-17">17 Sep 2026</time><span class="sep">·</span>
+        <span>10 min read</span>
+      </div>
+      <h1 class="post-h1">How AI answer engines decide which firm to recommend</h1>
+      <p class="lead">A firm can be eliminated at any of seven steps before it ever reaches the answer. What decides the outcome at each step, which levers you actually control, and why most spending goes to the wrong one.</p>
+      <div class="byline">
+        <span class="byline-name">Rahul Jagtap</span>
+        <span class="byline-role">Founder, Lumicite</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════ ARTICLE BODY ════════════════ -->
+  <section class="post-body-sec">
+    <div class="wrap">
+      <div class="post-grid">
+      <details class="toc" id="toc" open>
+        <summary class="toc-summary">on this page</summary>
+        <nav class="toc-inner" aria-label="On this page">
+          <ol class="toc-list">
+            <li><a href="#executive-summary">Executive summary</a></li>
+            <li><a href="#why-the-ai-just-knows-things-is-the-wrong-model">Why &quot;the AI just knows things&quot; is the wrong model</a></li>
+            <li><a href="#the-seven-steps-behind-a-single-recommendation">The seven steps behind a single recommendation</a></li>
+            <li><a href="#why-two-firms-with-identical-websites-get-different-answers">Why two firms with identical websites get different answers</a></li>
+            <li><a href="#what-you-control-and-what-you-do-not">What you control, and what you do not</a></li>
+            <li><a href="#the-four-reasons-a-firm-gets-left-out">The four reasons a firm gets left out</a></li>
+            <li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+            <li><a href="#where-to-start">Where to start</a></li>
+          </ol>
+          <div class="toc-cta">
+            <a href="/#audit">See where you stand <span class="ar">→</span></a>
+          </div>
+        </nav>
+      </details>
+
+      <div class="prose">
+        <aside class="takeaways" aria-label="Key takeaways">
+          <div class="tk-label">what this establishes</div>
+          <ol class="tk-list">
+            <li>Being recommended by an AI is a retrieval outcome, not a reputation outcome. The model looks something up in real time rather than consulting a ranked directory.</li>
+            <li>Inclusion is a sequence of seven gates. Elimination at any one is silent, and three of the seven are entirely outside a firm's influence.</li>
+            <li>Most firms are eliminated at step four, retrieval, because their pages are not in the index the platform searches — before any judgment of quality is made.</li>
+            <li>The two steps a firm controls most directly, retrieval and content format, are also the two that move fastest, which is why sequencing beats spending.</li>
+          </ol>
+        </aside>
+
+        <h2 id="executive-summary">Executive summary</h2>
+<p><strong>When someone asks ChatGPT for the best CA firm in Mumbai, the model does not consult a ranked list. It runs a sequence of seven steps, and a firm can be eliminated at any one of them without ever reaching the answer.</strong> Most firms fail at step four, retrieval, for a reason that has nothing to do with the quality of their website. This post walks through each step, names what decides the outcome at that step, and separates the levers you control from the ones you do not. The practical conclusion is that inclusion is a sequence of gates, so the order you fix things in matters more than how much you spend.</p>
+<h2 id="why-the-ai-just-knows-things-is-the-wrong-model">Why &quot;the AI just knows things&quot; is the wrong model</h2>
+<p>The most common assumption I hear from partners is that AI systems hold a directory of businesses and surface the good ones. They do not.</p>
+<p>A model trained on text has a compressed, lossy memory of what appeared in that text. For Deloitte, that memory is dense. For a 12-partner practice in Fort, it is usually empty. So when the question is specific and local, the system goes and looks something up, in real time, using a search index. What it finds in that moment, and how that content is written, decides who gets named.</p>
+<p><strong>Being recommended by an AI is not a reputation outcome. It is a retrieval outcome.</strong> Those are different problems with different fixes.</p>
+<h2 id="the-seven-steps-behind-a-single-recommendation">The seven steps behind a single recommendation</h2>
+<div class="fig"><svg viewBox="0 0 900 830" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A seven-step vertical pipeline showing how an AI answer engine goes from a user prompt to naming a firm: prompt interpretation, parametric recall, query fan-out, retrieval, reranking, grounding, and synthesis.">
+  <rect width="900" height="830" rx="16" fill="#0E1116"/>
+  <rect x="0.5" y="0.5" width="899" height="829" rx="16" fill="none" stroke="#2b2f36"/>
+  <text x="40" y="48" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.6" fill="#2FE0AE">01</text>
+  <text x="66" y="48" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.6" fill="#8A9098">— THE SELECTION PIPELINE</text>
+  <line x1="330" y1="44" x2="860" y2="44" stroke="#2b2f36"/>
+  <text x="40" y="92" font-family="'Schibsted Grotesk',sans-serif" font-size="25" font-weight="600" letter-spacing="-0.5" fill="#F5F6F4">Seven steps. Seven places to be eliminated.</text>
+  <text x="40" y="120" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="12" fill="#8A9098">"best CA firm in Mumbai for GST"</text>
+  <rect x="40" y="146" width="820" height="72" rx="10" fill="#161A20" stroke="#2b2f36"/>
+  <text x="66" y="176" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.4" fill="#8A9098">01</text>
+  <text x="102" y="178" font-family="'Schibsted Grotesk',sans-serif" font-size="16" font-weight="600" fill="#F5F6F4">Prompt interpretation</text>
+  <text x="102" y="200" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">Intent, location and constraints are extracted. Nothing you control.</text>
+  <polygon points="445,222 450,234 455,222" fill="#5B636E"/>
+  <rect x="40" y="238" width="820" height="72" rx="10" fill="#161A20" stroke="#2b2f36"/>
+  <text x="66" y="268" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.4" fill="#8A9098">02</text>
+  <text x="102" y="270" font-family="'Schibsted Grotesk',sans-serif" font-size="16" font-weight="600" fill="#F5F6F4">Parametric recall</text>
+  <text x="102" y="292" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">What the model already knows. For most Indian firms, nothing.</text>
+  <polygon points="445,314 450,326 455,314" fill="#5B636E"/>
+  <rect x="40" y="330" width="820" height="72" rx="10" fill="#161A20" stroke="#2b2f36"/>
+  <text x="66" y="360" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.4" fill="#8A9098">03</text>
+  <text x="102" y="362" font-family="'Schibsted Grotesk',sans-serif" font-size="16" font-weight="600" fill="#F5F6F4">Query fan-out</text>
+  <text x="102" y="384" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">One question becomes five to fifteen searches you never see.</text>
+  <polygon points="445,406 450,418 455,406" fill="#5B636E"/>
+  <rect x="40" y="422" width="820" height="72" rx="10" fill="#161A20" stroke="#2FE0AE"/>
+  <text x="66" y="452" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.4" fill="#2FE0AE">04</text>
+  <text x="102" y="454" font-family="'Schibsted Grotesk',sans-serif" font-size="16" font-weight="600" fill="#F5F6F4">Retrieval</text>
+  <text x="102" y="476" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#2FE0AE">The hard gate. Not in the index means eliminated here, silently.</text>
+  <polygon points="445,498 450,510 455,498" fill="#5B636E"/>
+  <rect x="40" y="514" width="820" height="72" rx="10" fill="#161A20" stroke="#2b2f36"/>
+  <text x="66" y="544" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.4" fill="#8A9098">05</text>
+  <text x="102" y="546" font-family="'Schibsted Grotesk',sans-serif" font-size="16" font-weight="600" fill="#F5F6F4">Reranking</text>
+  <text x="102" y="568" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">Candidates scored on relevance, authority and corroboration.</text>
+  <polygon points="445,590 450,602 455,590" fill="#5B636E"/>
+  <rect x="40" y="606" width="820" height="72" rx="10" fill="#161A20" stroke="#2b2f36"/>
+  <text x="66" y="636" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.4" fill="#8A9098">06</text>
+  <text x="102" y="638" font-family="'Schibsted Grotesk',sans-serif" font-size="16" font-weight="600" fill="#F5F6F4">Grounding</text>
+  <text x="102" y="660" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">Specific passages selected. Format decides this, not quality.</text>
+  <polygon points="445,682 450,694 455,682" fill="#5B636E"/>
+  <rect x="40" y="698" width="820" height="72" rx="10" fill="#161A20" stroke="#2b2f36"/>
+  <text x="66" y="728" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.4" fill="#8A9098">07</text>
+  <text x="102" y="730" font-family="'Schibsted Grotesk',sans-serif" font-size="16" font-weight="600" fill="#F5F6F4">Synthesis and naming</text>
+  <text x="102" y="752" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">The answer is written. Your firm is named, cited, or left out.</text>
+  <text x="40" y="800" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" fill="#5B636E">Elimination at any step is silent. You never see the answer you did not appear in.</text>
+</svg></div>
+<h3 id="step-1-prompt-interpretation">Step 1: prompt interpretation</h3>
+<p>The system reads intent, location and any constraints out of the question. &quot;Best CA firm in Mumbai for GST&quot; carries a service, a city and an implied quality judgment. Nothing here is under your control. It matters only because it sets up the next step.</p>
+<h3 id="step-2-parametric-recall">Step 2: parametric recall</h3>
+<p>The model checks what it already holds. This is where large, heavily-written-about brands win without any retrieval at all.</p>
+<p>For an Indian professional firm, assume this is empty. Parametric presence is built over years of being written about in public, at volume, on sources that end up in training data. It is a genuine long-term goal and a useless short-term one. Anyone selling you a three-month plan to get &quot;into the model's knowledge&quot; is selling you something that does not work that way.</p>
+<h3 id="step-3-query-fan-out">Step 3: query fan-out</h3>
+<p>The system rewrites the question into multiple sub-queries and searches each one. &quot;Best CA firm in Mumbai for GST&quot; might become GST consultants Mumbai, chartered accountant GST filing BKC, top CA firms Mumbai reviews, GST compliance services near me, and several more.</p>
+<p>This is the single most consequential mechanic for how the work gets planned. <strong>You are not competing for the query the client typed. You are competing for a family of rewritten queries you never see, and your coverage across that family determines whether you survive to the next step.</strong> A page optimised for one phrase covers one branch of a tree with a dozen branches.</p>
+<h3 id="step-4-retrieval">Step 4: retrieval</h3>
+<p>Candidates are pulled from a live search index. Which index depends on the platform. Microsoft Copilot runs on Bing. ChatGPT's retrieval has leaned on Bing, with Google-derived signals clearly influencing results by 2026. Google's AI Overviews and AI Mode use Google.</p>
+<p>This is where most Indian professional firms die, and they never find out. A site that has never been submitted to Bing Webmaster Tools is frequently not in Bing's index at all, or is indexed at a fraction of its page count. <strong>If your pages are not in the index the platform retrieves from, nothing downstream applies. You are eliminated before any judgment of quality is made.</strong></p>
+<p>The fix is unglamorous and free: Bing Webmaster Tools, sitemap submitted, IndexNow configured, robots.txt checked so GPTBot, ClaudeBot, PerplexityBot, Google-Extended and Bingbot are not blocked by a template your web developer copied in 2021.</p>
+<h3 id="step-5-reranking">Step 5: reranking</h3>
+<p>Retrieved candidates get scored and ordered before the model reads them. Relevance to the sub-query, general domain authority, freshness and corroboration all feed in.</p>
+<p>Two findings worth holding onto. SE Ranking's November 2025 research found sites with over 32,000 referring domains are around 3.5x more likely to be cited by ChatGPT than sites with under 200, so classical authority still counts for something. The same research found llms.txt has no measurable effect on citation likelihood, so ignore anyone selling it as a strategy.</p>
+<p>Freshness matters here too. Content with a recent, visible date tends to be preferred over undated content saying the same thing.</p>
+<h3 id="step-6-grounding-and-passage-selection">Step 6: grounding and passage selection</h3>
+<p>Now the model reads the shortlisted documents and picks specific passages to build the answer from. This step is where good content loses to well-formatted content.</p>
+<div class="fig"><svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparison of two page layouts: one with the answer buried deep in the page, which is not selected for citation, and one with the answer in the first two sentences, which is selected.">
+  <rect width="900" height="540" rx="16" fill="#0E1116"/>
+  <rect x="0.5" y="0.5" width="899" height="539" rx="16" fill="none" stroke="#2b2f36"/>
+  <text x="40" y="48" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.6" fill="#2FE0AE">02</text>
+  <text x="66" y="48" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.6" fill="#8A9098">— WHAT GETS EXTRACTED</text>
+  <line x1="310" y1="44" x2="860" y2="44" stroke="#2b2f36"/>
+  <text x="40" y="92" font-family="'Schibsted Grotesk',sans-serif" font-size="25" font-weight="600" letter-spacing="-0.5" fill="#F5F6F4">Same information. One page gets cited.</text>
+  <text x="60" y="134" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" letter-spacing="1.2" fill="#8A9098">ANSWER BURIED IN PARAGRAPH FOUR</text>
+  <rect x="60" y="150" width="340" height="290" rx="10" fill="#161A20" stroke="#2b2f36"/>
+  <rect x="84" y="178" width="260" height="8" rx="4" fill="#31373f"/>
+  <rect x="84" y="193" width="292" height="8" rx="4" fill="#31373f"/>
+  <rect x="84" y="208" width="240" height="8" rx="4" fill="#31373f"/>
+  <rect x="84" y="223" width="280" height="8" rx="4" fill="#31373f"/>
+  <rect x="84" y="253" width="268" height="8" rx="4" fill="#31373f"/>
+  <rect x="84" y="268" width="290" height="8" rx="4" fill="#31373f"/>
+  <rect x="84" y="283" width="230" height="8" rx="4" fill="#31373f"/>
+  <rect x="84" y="313" width="284" height="8" rx="4" fill="#31373f"/>
+  <rect x="84" y="328" width="250" height="8" rx="4" fill="#31373f"/>
+  <text x="84" y="348" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10" letter-spacing="1.1" fill="#5B636E">THE ACTUAL ANSWER ↓</text>
+  <rect x="84" y="358" width="270" height="8" rx="4" fill="#5B636E"/>
+  <rect x="84" y="373" width="238" height="8" rx="4" fill="#5B636E"/>
+  <rect x="84" y="403" width="260" height="8" rx="4" fill="#31373f"/>
+  <text x="60" y="466" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" letter-spacing="1.2" fill="#8A9098">NOT SELECTED</text>
+  <text x="500" y="134" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" letter-spacing="1.2" fill="#8A9098">ANSWER IN THE FIRST TWO SENTENCES</text>
+  <rect x="500" y="150" width="340" height="290" rx="10" fill="#161A20" stroke="#2FE0AE"/>
+  <rect x="524" y="178" width="270" height="8" rx="4" fill="#2FE0AE"/>
+  <rect x="524" y="193" width="238" height="8" rx="4" fill="#2FE0AE"/>
+  <rect x="524" y="223" width="292" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="238" width="240" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="253" width="280" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="283" width="268" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="298" width="290" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="313" width="230" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="343" width="284" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="358" width="250" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="388" width="270" height="8" rx="4" fill="#31373f"/>
+  <rect x="524" y="403" width="238" height="8" rx="4" fill="#31373f"/>
+  <text x="500" y="466" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" letter-spacing="1.2" fill="#2FE0AE">SELECTED AS CITATION</text>
+  <line x1="40" y1="492" x2="860" y2="492" stroke="#2b2f36"/>
+  <text x="40" y="520" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" fill="#5B636E">44.2% of LLM citations come from the first 30% of a document. — LLM citation pattern research, 2026</text>
+</svg></div>
+<p>Research on LLM citation patterns in 2026 found 44.2% of all citations come from the first 30% of a document's text, with a further 31.1% from the middle section. Answers placed at the end of a page are rarely reached.</p>
+<p>What gets selected, in order of reliability:</p>
+<ul>
+<li>A question-shaped heading followed immediately by a direct one or two sentence answer</li>
+<li>A specific, checkable fact: a number, a qualification, a named service, a location</li>
+<li>A short list where each item stands alone</li>
+<li>A table with clear headers</li>
+</ul>
+<p>What does not get selected: brochure prose, mission statements, anything that builds to a point over four paragraphs, and anything hedged so heavily it states nothing.</p>
+<h3 id="step-7-synthesis-and-naming">Step 7: synthesis and naming</h3>
+<p>Finally the model writes the answer and decides whether to name businesses at all. Platforms behave very differently here.</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Cites sources</th>
+<th>Names brands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT</td>
+<td>87% of answers</td>
+<td>20.7% of answers</td>
+</tr>
+<tr>
+<td>Google AI Mode</td>
+<td>76.3%</td>
+<td>37.6%</td>
+</tr>
+<tr>
+<td>Google AI Overviews</td>
+<td>84.9%</td>
+<td>61%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Source: Growth Memo, April 2026</em></p>
+<p>The consequence is that being used as a source and being recommended by name are separate outcomes, and a firm can be doing well at one while failing at the other. ChatGPT in particular behaves like an academic paper: heavy on footnotes, light on naming. If you measure only brand mentions, you will underestimate progress on ChatGPT and overestimate it on AI Overviews.</p>
+<h2 id="why-two-firms-with-identical-websites-get-different-answers">Why two firms with identical websites get different answers</h2>
+<p>Because most of the decision is not made on the website.</p>
+<p>At step five, corroboration carries real weight. A claim your site makes about itself is one data point. The same claim appearing on your Google Business Profile, your LinkedIn page, the ICAI member directory, JustDial and a review platform is five agreeing data points, and the system can resolve the entity with confidence.</p>
+<div class="fig"><svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing a firm at the centre connected to eight surfaces: website, Google Business Profile, LinkedIn, ICAI directory, JustDial, review platform, Reddit thread and press mention. Consistent descriptions are shown as solid confirmed links, inconsistent ones as dashed unresolved links.">
+  <rect width="900" height="560" rx="16" fill="#0E1116"/>
+  <rect x="0.5" y="0.5" width="899" height="559" rx="16" fill="none" stroke="#2b2f36"/>
+  <text x="40" y="48" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.6" fill="#2FE0AE">03</text>
+  <text x="66" y="48" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.6" fill="#8A9098">— ENTITY CORROBORATION</text>
+  <line x1="320" y1="44" x2="860" y2="44" stroke="#2b2f36"/>
+  <text x="40" y="92" font-family="'Schibsted Grotesk',sans-serif" font-size="25" font-weight="600" letter-spacing="-0.5" fill="#F5F6F4">One description, repeated. Or five, contradicting.</text>
+  <line x1="450" y1="310" x2="190" y2="180" stroke="#2FE0AE" stroke-width="1.2" opacity="0.7"/>
+  <line x1="450" y1="310" x2="190" y2="310" stroke="#2FE0AE" stroke-width="1.2" opacity="0.7"/>
+  <line x1="450" y1="310" x2="190" y2="440" stroke="#2FE0AE" stroke-width="1.2" opacity="0.7"/>
+  <line x1="450" y1="310" x2="450" y2="170" stroke="#2FE0AE" stroke-width="1.2" opacity="0.7"/>
+  <line x1="450" y1="310" x2="710" y2="180" stroke="#2FE0AE" stroke-width="1.2" opacity="0.7"/>
+  <line x1="450" y1="310" x2="710" y2="310" stroke="#5B636E" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <line x1="450" y1="310" x2="710" y2="440" stroke="#5B636E" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <line x1="450" y1="310" x2="450" y2="460" stroke="#2FE0AE" stroke-width="1.2" opacity="0.7"/>
+  <circle cx="450" cy="310" r="52" fill="#161A20" stroke="#2FE0AE" stroke-width="1.5"/>
+  <text x="450" y="306" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.2" fill="#2FE0AE">THE</text>
+  <text x="450" y="322" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.2" fill="#2FE0AE">FIRM</text>
+  <rect x="72" y="158" width="180" height="44" rx="8" fill="#161A20" stroke="#2b2f36"/>
+  <text x="162" y="185" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">your website</text>
+  <rect x="72" y="288" width="180" height="44" rx="8" fill="#161A20" stroke="#2b2f36"/>
+  <text x="162" y="315" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">Google Business Profile</text>
+  <rect x="72" y="418" width="180" height="44" rx="8" fill="#161A20" stroke="#2b2f36"/>
+  <text x="162" y="445" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">LinkedIn</text>
+  <rect x="360" y="126" width="180" height="44" rx="8" fill="#161A20" stroke="#2b2f36"/>
+  <text x="450" y="153" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">ICAI directory</text>
+  <rect x="648" y="158" width="180" height="44" rx="8" fill="#161A20" stroke="#2b2f36"/>
+  <text x="738" y="185" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">review platform</text>
+  <rect x="648" y="288" width="180" height="44" rx="8" fill="#161A20" stroke="#2b2f36"/>
+  <text x="738" y="309" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">JustDial</text>
+  <text x="738" y="325" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10" fill="#5B636E">old address</text>
+  <rect x="648" y="418" width="180" height="44" rx="8" fill="#161A20" stroke="#2b2f36"/>
+  <text x="738" y="439" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">Sulekha</text>
+  <text x="738" y="455" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10" fill="#5B636E">different firm name</text>
+  <rect x="360" y="448" width="180" height="44" rx="8" fill="#161A20" stroke="#2b2f36"/>
+  <text x="450" y="475" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">Reddit thread</text>
+  <line x1="40" y1="512" x2="860" y2="512" stroke="#2b2f36"/>
+  <circle cx="52" cy="536" r="4.5" fill="#2FE0AE"/>
+  <text x="68" y="540" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" fill="#8A9098">confirmed</text>
+  <line x1="180" y1="536" x2="208" y2="536" stroke="#5B636E" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="220" y="540" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" fill="#8A9098">unresolved — two inconsistent listings are enough to make the system hesitate</text>
+</svg></div>
+<p>Two things follow.</p>
+<p>The first is that inconsistency is not neutral, it is negative. An old address on JustDial and a shortened firm name on Sulekha do not simply fail to help. They introduce doubt about which entity is which, and a system that cannot resolve you confidently will select a competitor it can.</p>
+<p>The second is where the corroborating surfaces actually are. SEMrush analysed 325,000 prompts in March 2026 and found LinkedIn is the most-cited domain for professional queries, appearing in 14.3% of ChatGPT Search responses and 13.5% of Google AI Mode responses. Reddit accounts for roughly 40% of AI citations across ChatGPT, Gemini and Claude combined (5WPR AI Platform Citation Index 2026), and 24% of Perplexity citations in January 2026 (Tinuiti). SE Ranking found domains with substantial community presence carry around 4x the citation likelihood, and those with review-platform profiles around 3x.</p>
+<h2 id="what-you-control-and-what-you-do-not">What you control, and what you do not</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What decides it</th>
+<th>Your control</th>
+<th>Time to move</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 Prompt interpretation</td>
+<td>The user's wording</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>02 Parametric recall</td>
+<td>Years of public writing about you</td>
+<td>Very low, very slow</td>
+<td>Years</td>
+</tr>
+<tr>
+<td>03 Query fan-out</td>
+<td>The platform's rewriting logic</td>
+<td>None directly; coverage is the response</td>
+<td>Weeks</td>
+</tr>
+<tr>
+<td>04 Retrieval</td>
+<td>Index presence and crawlability</td>
+<td>High</td>
+<td>Days</td>
+</tr>
+<tr>
+<td>05 Reranking</td>
+<td>Authority, freshness, corroboration</td>
+<td>Medium</td>
+<td>Months</td>
+</tr>
+<tr>
+<td>06 Grounding</td>
+<td>Content format and specificity</td>
+<td>High</td>
+<td>Weeks</td>
+</tr>
+<tr>
+<td>07 Synthesis</td>
+<td>Platform naming behaviour</td>
+<td>None</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Three of the seven steps are entirely outside your influence. That is worth saying plainly, because a provider who implies otherwise is overselling.</p>
+<p>The two you control most directly, retrieval and grounding, are also the two that move fastest. That is a fortunate accident, and it explains why a properly sequenced engagement front-loads indexation and content format before touching anything else.</p>
+<div class="fig"><svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A scatter plot of AI visibility levers by how long they take to move and how much leverage they carry. Bing indexation is fast and high leverage. Earned placements and Reddit are slow and high leverage. Schema is fast and moderate.">
+  <rect width="900" height="580" rx="16" fill="#0E1116"/>
+  <rect x="0.5" y="0.5" width="899" height="579" rx="16" fill="none" stroke="#2b2f36"/>
+  <text x="40" y="48" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.6" fill="#2FE0AE">04</text>
+  <text x="66" y="48" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" letter-spacing="1.6" fill="#8A9098">— LEVERAGE AGAINST TIME</text>
+  <line x1="330" y1="44" x2="860" y2="44" stroke="#2b2f36"/>
+  <text x="40" y="92" font-family="'Schibsted Grotesk',sans-serif" font-size="25" font-weight="600" letter-spacing="-0.5" fill="#F5F6F4">Do the top-left first. Always.</text>
+  <line x1="120" y1="480" x2="850" y2="480" stroke="#2b2f36"/>
+  <line x1="120" y1="130" x2="120" y2="480" stroke="#2b2f36"/>
+  <text x="120" y="508" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.2" fill="#5B636E">WEEK 0</text>
+  <text x="850" y="508" text-anchor="end" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.2" fill="#5B636E">WEEK 24</text>
+  <text x="104" y="500" text-anchor="end" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.2" fill="#5B636E">LOW</text>
+  <text x="104" y="140" text-anchor="end" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.2" fill="#5B636E">HIGH</text>
+  <text x="86" y="320" text-anchor="middle" transform="rotate(-90 86 320)" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="10.5" letter-spacing="1.2" fill="#5B636E">LEVERAGE</text>
+  <circle cx="150" cy="185" r="7" fill="#2FE0AE"/>
+  <text x="166" y="189" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#2FE0AE">Bing indexation + IndexNow</text>
+  <circle cx="180" cy="323" r="6" fill="#8A9098"/>
+  <text x="150" y="348" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">schema markup</text>
+  <circle cx="220" cy="288" r="6" fill="#8A9098"/>
+  <text x="236" y="292" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">Google Business Profile</text>
+  <circle cx="300" cy="219" r="7" fill="#2FE0AE"/>
+  <text x="290" y="250" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">answer-format rewrite</text>
+  <circle cx="340" cy="185" r="7" fill="#2FE0AE"/>
+  <text x="356" y="172" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">entity consistency</text>
+  <circle cx="480" cy="288" r="6" fill="#8A9098"/>
+  <text x="496" y="292" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#8A9098">review velocity</text>
+  <circle cx="600" cy="219" r="7" fill="#2FE0AE"/>
+  <text x="590" y="250" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">Reddit and Quora</text>
+  <circle cx="720" cy="185" r="7" fill="#2FE0AE"/>
+  <text x="694" y="172" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11.5" fill="#C7CCD2">earned placements</text>
+  <text x="40" y="548" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" fill="#5B636E">Indicative, based on delivery across Mumbai professional services engagements.</text>
+</svg></div>
+<h2 id="the-four-reasons-a-firm-gets-left-out">The four reasons a firm gets left out</h2>
+<p>Diagnosed in order, because each one makes the next irrelevant.</p>
+<ol>
+<li><strong>Not in the index.</strong> Eliminated at step four. Nothing else matters yet.</li>
+<li><strong>In the index but not resolvable.</strong> Described differently across surfaces, so step five cannot establish which entity you are.</li>
+<li><strong>Resolvable but not extractable.</strong> Step six finds no passage that answers the sub-query directly.</li>
+<li><strong>Extractable but not corroborated.</strong> Your site says it, nothing else does, so a competitor with five agreeing sources gets named instead.</li>
+</ol>
+<p><strong>Most firms try to fix number four with content marketing while failing at number one. That is why their spending produces nothing.</strong></p>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2>
+<p><strong>How does ChatGPT decide which businesses to recommend?</strong></p>
+<p>ChatGPT rewrites the question into multiple sub-queries, retrieves candidate pages from a live search index, reranks them on relevance and authority, then selects specific passages to build its answer from. A business that is not in the retrieved index is eliminated before quality is ever assessed.</p>
+<p><strong>Why does ChatGPT recommend my competitor instead of my firm?</strong></p>
+<p>Usually because your competitor is retrievable and you are not, or because their description is consistent across enough third-party surfaces for the system to identify them confidently while yours is not. It is rarely a judgment about which firm is better.</p>
+<p><strong>Can you pay to appear in AI search results?</strong></p>
+<p>No, not in the organic answer. AI recommendations are produced by retrieval and synthesis, not by placement, and no agency or platform sells inclusion in an organic AI answer. Advertising products inside AI interfaces are separate and clearly marked.</p>
+<h2 id="where-to-start">Where to start</h2>
+<p>Check step four before anything else. Go to Bing Webmaster Tools, add your site, and compare the pages indexed against the pages you actually have. If the number is zero or a small fraction, you have found your problem, and it is free to fix.</p>
+<p>After that, open ChatGPT and Perplexity and ask what a prospective client would ask. Ask it five different ways. Whoever appears is surviving all seven steps. You now know exactly which ones they are surviving that you are not.</p>
+<p>Lumicite runs a fixed-scope AI Visibility Audit for ₹9,500 that does this properly: 25 test queries across five platforms, scored on a fixed rubric, plus indexation and crawlability checks, competitor intelligence on your top three, and the list of domains AI is currently citing in your category. Five to seven working days, creditable against a full engagement.</p>
+
+        <section class="sources" aria-label="Sources">
+          <h2 class="sources-h">Sources</h2>
+          <ol class="sources-list">
+            <li>Growth Memo, citation and brand-mention rates across the major AI engines (2026)
+            </li>
+            <li>SE Ranking, referring-domain thresholds for ChatGPT citation likelihood, llms.txt impact, and community and review-platform presence (2025)
+            </li>
+            <li>SEMrush, analysis of 325,000 prompts identifying the most-cited domains for professional queries (2026)
+            </li>
+            <li>5WPR AI Platform Citation Index, Reddit&#39;s share of AI citations across ChatGPT, Gemini and Claude (2026)
+            </li>
+            <li>Tinuiti Q1 AI Citation Trends Report, Perplexity citation sources (2026)
+            </li>
+            <li>LLM citation pattern research, distribution of citations across a document&#39;s length (2026)
+            </li>
+          </ol>
+        </section>
+
+        <aside class="author-card">
+          <div class="ac-label">written by</div>
+          <div class="ac-name">Rahul Jagtap</div>
+          <div class="ac-role">Founder, Lumicite</div>
+          <p class="ac-bio">AI search visibility expert and founder of Lumicite.</p>
+          <div class="ac-links">
+            <a href="https://www.linkedin.com/in/rahul-jagtap-906002194/" rel="noopener">LinkedIn</a>
+          </div>
+        </aside>
+
+        <div class="post-back">
+          <a href="/blog/"><span class="ar">←</span> back to blog</a>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+</main>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="lk" href="/" aria-label="Lumicite home">
+          <svg class="mark" style="color:var(--paper)" aria-hidden="true"><use href="#mark"/></svg>
+          <span class="wm">lumicite</span>
+        </a>
+        <div class="foot-tag">how AI sees your firm.</div>
+      </div>
+      <div class="foot-contact">
+        <a href="mailto:contact@lumicite.in">contact@lumicite.in</a><br>
+        <a href="https://www.lumicite.in">www.lumicite.in</a>
+      </div>
+    </div>
+    <div class="foot-rule"></div>
+    <div class="foot-fine">
+      Lumicite measures AI visibility; it does not guarantee AI rankings.<br>
+      Figures are drawn from named third-party research (Ahrefs, Gartner, Attorney at Work, and others), current as of 2026.
+    </div>
+    <div class="foot-legal">
+      <a href="/#privacy">Privacy policy</a>
+      <a href="/#terms">Terms of use</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+</body>
+</html>

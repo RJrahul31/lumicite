@@ -364,7 +364,13 @@
   .who-card .ic{font-family:var(--mono);font-size:12px;color:var(--signal);letter-spacing:0.08em}
   .who-card .t{font-size:18px;font-weight:600;margin-top:14px}
   .who-card .d{font-size:14px;color:#C7CCD2;margin-top:8px;line-height:1.5}
-  @media(max-width:1080px) and (min-width:821px){.who-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:1080px) and (min-width:821px){
+    .who-grid{grid-template-columns:repeat(2,1fr)}
+    /* six nav items need tighter gaps below 1080px or the row wraps */
+    .nav-inner{padding:18px 32px}
+    .nav-menu{gap:18px}
+    .nav-links{gap:18px}
+  }
   .why-proof{font-family:var(--mono);font-size:13.5px;color:var(--graphite);margin-top:36px;padding:20px 24px;border-left:2px solid var(--signal-deep);background:var(--paper-2);border-radius:0 10px 10px 0;line-height:1.6;max-width:64ch}
 
   /* ── faq (§10) ───────────────────────────── */
@@ -530,6 +536,7 @@
         <a href="#shift">the shift</a>
         <a href="#how">how it works</a>
         <a href="#audit">the audit</a>
+        <a href="/blog/">blog</a>
         <a href="#faq">faq</a>
         <a href="#contact">contact</a>
       </nav>
@@ -1446,17 +1453,28 @@
   let lastModalTrigger = null;
   const openModal = (id) => {
     const m = document.getElementById(id);
-    if (!m) return;
-    lastModalTrigger = document.activeElement;
+    if (!m || !m.hidden) return;
+    // Only one at a time. Switching #privacy -> #terms is a same-document
+    // navigation, so without this the first modal stays open underneath.
+    const alreadyOpen = document.querySelector('.modal:not([hidden])');
+    if (alreadyOpen) alreadyOpen.hidden = true;
+    else lastModalTrigger = document.activeElement;
     m.hidden = false;
     document.body.style.overflow = 'hidden';
     const x = m.querySelector('.modal-x');
     if (x) x.focus();
   };
+  // Deep links from elsewhere on the site (the blog footer links here, since
+  // the canonical legal text lives in these modals and nowhere else).
+  const legalHash = { '#privacy': 'modal-privacy', '#terms': 'modal-terms' };
   const closeModal = (m) => {
     if (!m) return;
     m.hidden = true;
     if (!document.querySelector('.modal:not([hidden])')) document.body.style.overflow = '';
+    // Drop the #privacy / #terms fragment so the same link works again later.
+    if (legalHash[location.hash]) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
     if (lastModalTrigger) { lastModalTrigger.focus(); lastModalTrigger = null; }
   };
   document.querySelectorAll('[data-modal]').forEach((t) =>
@@ -1468,6 +1486,12 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') document.querySelectorAll('.modal:not([hidden])').forEach(closeModal);
   });
+  const openFromHash = () => {
+    const id = legalHash[location.hash];
+    if (id) openModal(id);
+  };
+  openFromHash();                                   // arriving from /blog/
+  window.addEventListener('hashchange', openFromHash); // already on the page
 </script>
 
 <!-- FAQPage structured data — keep in sync with the visible FAQ (§10) -->

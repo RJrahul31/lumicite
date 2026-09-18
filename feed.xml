@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lumicite — blog</title>
+    <link>https://www.lumicite.in/blog/</link>
+    <atom:link href="https://www.lumicite.in/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Notes on how AI search sees professional firms: method, measurements, and what the data actually shows. Every figure carries its source by name.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 17 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>How to choose an AI search visibility partner in India: 11 questions to ask before you pay anyone</title>
+      <link>https://www.lumicite.in/blog/choose-ai-visibility-partner-india/</link>
+      <guid isPermaLink="true">https://www.lumicite.in/blog/choose-ai-visibility-partner-india/</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <author>contact@lumicite.in (Rahul Jagtap)</author>
+      <category>buying</category>
+      <description>The category has no certification and no accepted measurement standard, so the buyer carries the entire burden of due diligence. Eleven questions, the answers that should reassure you, and the ones that should end the meeting.</description>
+    </item>
+    <item>
+      <title>Why referrals are no longer enough for CA firms: the 81% validation gap</title>
+      <link>https://www.lumicite.in/blog/why-referrals-are-no-longer-enough/</link>
+      <guid isPermaLink="true">https://www.lumicite.in/blog/why-referrals-are-no-longer-enough/</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <author>contact@lumicite.in (Rahul Jagtap)</author>
+      <category>diagnosis</category>
+      <description>Referrals still start most CA client relationships. In 2026, an AI answer finishes them. What the 81% validation gap is, why it costs CA firms clients silently, and the five steps that close it.</description>
+    </item>
+    <item>
+      <title>How AI answer engines decide which firm to recommend</title>
+      <link>https://www.lumicite.in/blog/how-ai-engines-decide-which-firm-to-recommend/</link>
+      <guid isPermaLink="true">https://www.lumicite.in/blog/how-ai-engines-decide-which-firm-to-recommend/</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <author>contact@lumicite.in (Rahul Jagtap)</author>
+      <category>mechanics</category>
+      <description>A firm can be eliminated at any of seven steps before it ever reaches the answer. What decides the outcome at each step, which levers you actually control, and why most spending goes to the wrong one.</description>
+    </item>
+    <item>
+      <title>The Entity Brief: the one paragraph that decides whether AI recognises your firm</title>
+      <link>https://www.lumicite.in/blog/entity-brief/</link>
+      <guid isPermaLink="true">https://www.lumicite.in/blog/entity-brief/</guid>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <author>contact@lumicite.in (Rahul Jagtap)</author>
+      <category>method</category>
+      <description>AI engines only recommend firms they can resolve into a single, consistent entity. The Entity Brief is the canonical paragraph that makes that possible. What it is, what goes in it, where it is deployed, and how to write one.</description>
+    </item>
+    <item>
+      <title>The definitive guide to generative engine optimization (GEO) for professional services</title>
+      <link>https://www.lumicite.in/blog/geo-guide-professional-services/</link>
+      <guid isPermaLink="true">https://www.lumicite.in/blog/geo-guide-professional-services/</guid>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
+      <author>contact@lumicite.in (Rahul Jagtap)</author>
+      <category>guide</category>
+      <description>How AI answer engines actually pick firms, the four layers of work that change the outcome, how to measure it without rankings, and what GEO cannot do.</description>
+    </item>
+    <item>
+      <title>Why ranking on Google no longer means being cited by AI</title>
+      <link>https://www.lumicite.in/blog/google-rankings-and-ai-citations/</link>
+      <guid isPermaLink="true">https://www.lumicite.in/blog/google-rankings-and-ai-citations/</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <author>contact@lumicite.in (Rahul Jagtap)</author>
+      <category>measurement</category>
+      <description>The overlap between search rankings and AI citations has narrowed sharply. What that separation means for firms that already rank well.</description>
+    </item>
+  </channel>
+</rss>
